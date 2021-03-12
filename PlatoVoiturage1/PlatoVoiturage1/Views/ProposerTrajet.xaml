@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlatoVoiturage1.Views.ProposerTrajet"
+             xmlns:services ="clr-namespace:PlatoVoiturage1.Services"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid Padding="0,0,0,0" Margin="10,10,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="100"/>
+
+                </Grid.RowDefinitions>
+                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                    <Frame BorderColor="{StaticResource Primary}" BackgroundColor="{StaticResource Primary}" CornerRadius="50" Padding="5,0,5,0">
+                        <ImageButton Source="burger_white.png" Grid.Row="0" Grid.Column="0" WidthRequest="50"  HeightRequest="50" BackgroundColor="{StaticResource Primary}" HorizontalOptions="StartAndExpand" Clicked="ImageButton_Clicked" />
+                    </Frame>
+                    <Frame BorderColor="{StaticResource Primary}" BackgroundColor="{StaticResource Primary}" CornerRadius="50" Padding="5,0,5,0">
+                        <Label Text="Création d'un nouveau trajet" TextColor="White" FontSize="25" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                    </Frame>
+                </StackLayout>
+                <Frame BorderColor="{StaticResource Primary}" CornerRadius="50" Padding="0,0,0,0" Grid.Row="2" Grid.Column="0">
+                    <Label Text="Renseignez l'adresse de départ" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
+                </Frame>
+                <Frame BorderColor="Gray" Padding ="0,0,0,0" Grid.Row="3" Grid.Column="0">
+                    <Entry IsTextPredictionEnabled="False" Placeholder="Adresse de départ" PlaceholderColor="Gray" Grid.Row="3" Grid.Column="0" TextTransform="Lowercase" ClearButtonVisibility="WhileEditing"/>
+                </Frame>
+                <Frame BorderColor="{StaticResource Primary}" CornerRadius="50" Padding="0,0,0,0" Grid.Row="4" Grid.Column="0">
+                    <Label Text="Renseignez l'adresse d'arrivée" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
+                </Frame>
+                <Frame BorderColor="Gray" Padding ="0,0,0,0" Grid.Row="5" Grid.Column="0">
+                    <Entry IsTextPredictionEnabled="False" Placeholder="Adresse d'arrivée" PlaceholderColor="Gray" Grid.Row="3" Grid.Column="0" TextTransform="Lowercase" ClearButtonVisibility="WhileEditing"/>
+                </Frame>
+                <Frame BorderColor="{StaticResource Primary}" CornerRadius="50" Padding="0,0,0,0" Grid.Row="6" Grid.Column="0">
+                    <Label Text="Renseignez l'heure de départ" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
+                </Frame>
+                <Frame BorderColor="Gray" Padding ="0,0,0,0" Grid.Row="7" Grid.Column="0">
+                    <TimePicker TextColor="Black" />
+                </Frame>
+                <Frame BorderColor="{StaticResource Primary}" CornerRadius="50" Padding="0,0,0,0" Grid.Row="8" Grid.Column="0">
+                    <Label Text="Renseignez le nombre de places" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
+                </Frame>
+                <Frame BorderColor="Gray" Padding ="0,0,0,0" Grid.Row="9" Grid.Column="0">
+                    <Entry Keyboard="Numeric" TextColor="Black" Placeholder="0" PlaceholderColor="Gray">
+                        <Entry.Behaviors>
+                            <!-- We add this service to avoid having commas and minus in the aount of room-->
+                            <services:NumericValidationBehavior/>
+                        </Entry.Behaviors>
+                    </Entry>
+                </Frame>
+                <Frame BorderColor="{StaticResource Primary}" CornerRadius="50" Padding="0,0,0,0" Grid.Row="10" Grid.Column="0">
+                    <Label Text="Commentaires" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
+                </Frame>
+                <Frame BorderColor="Gray" Padding ="0,0,0,0" Grid.Row="11" Grid.Column="0">
+                    <Editor Placeholder="Pauses dans certaines villes, horaires d'arrivée spécifique, présence d'un petit sapin vert ..." FontSize="Small" TextColor ="Black" PlaceholderColor="Gray" AutoSize="TextChanges"/>
+                </Frame>
+                <Frame BorderColor="{StaticResource Primary}" CornerRadius="50" Padding="0,0,0,0" Grid.Row="12" Grid.Column="0">
+                    <Label Text="Autorisations" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
+                </Frame>
+                <StackLayout Orientation="Horizontal" Grid.Row="13" Grid.Column="0" HeightRequest="100" Margin="10,0,10,0" HorizontalOptions="Center">
+                    <StackLayout HeightRequest="100">
+                        <Label Text="Animaux" TextColor="Black" HorizontalOptions="Center"/>
+                        <Frame BorderColor="Gray" Padding="0,0,0,0">
+                            <ImageButton Source="chien.png" HeightRequest="50" BackgroundColor="White" Clicked="ChangeColor"/>
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout HeightRequest="100">
+                        <Label Text="Fumée" TextColor="Black" HorizontalOptions="Center"/>
+                        <Frame BorderColor="Gray" Padding="0,0,0,0">
+                            <ImageButton Source="cigarette.png" HeightRequest="50" BackgroundColor="White" Clicked="ChangeColor"/>
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout HeightRequest="100">
+                        <Label Text="Musique" TextColor="Black" HorizontalOptions="Center"/>
+                        <Frame BorderColor="Gray" Padding="0,0,0,0">
+                            <ImageButton Source="music.png" HeightRequest="50" BackgroundColor="White" Clicked="ChangeColor"/>
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout HeightRequest="100">
+                        <Label Text="Conversation" TextColor="Black" HorizontalOptions="Center"/>
+                        <Frame BorderColor="Gray" Padding="0,0,0,0">
+                            <ImageButton Source="conversation.png" HeightRequest="50" BackgroundColor="White" Clicked="ChangeColor"/>
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>
+                <Grid Margin="10,0,10,0" Grid.Row="15" Grid.Column="0" HorizontalOptions="Center" >
+                    <Button Grid.Row ="0" Grid.Column="0" Text="Retour" BackgroundColor="{StaticResource Primary}" Clicked="On_Return_Button_Clicked"/>
+                    <Button Grid.Row="0" Grid.Column="3" Text="Valider" BackgroundColor="{StaticResource Primary}"/>
+                </Grid>
+
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
