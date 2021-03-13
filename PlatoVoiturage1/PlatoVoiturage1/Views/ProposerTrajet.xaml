@@ -24,7 +24,7 @@
                     <RowDefinition Height="100"/>
 
                 </Grid.RowDefinitions>
-                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0" HeightRequest="50">
                     <Frame BorderColor="{StaticResource Primary}" BackgroundColor="{StaticResource Primary}" CornerRadius="50" Padding="5,0,5,0">
                         <ImageButton Source="burger_white.png" Grid.Row="0" Grid.Column="0" WidthRequest="50"  HeightRequest="50" BackgroundColor="{StaticResource Primary}" HorizontalOptions="StartAndExpand" Clicked="ImageButton_Clicked" />
                     </Frame>

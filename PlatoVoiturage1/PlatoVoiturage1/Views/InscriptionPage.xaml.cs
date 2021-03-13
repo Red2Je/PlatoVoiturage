@@ -10,11 +10,15 @@ using Xamarin.Forms.Xaml;
 namespace PlatoVoiturage1.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Test : ContentPage
+    public partial class InscriptionPage : ContentPage
     {
-        public Test()
+        public InscriptionPage()
         {
             InitializeComponent();
+        }
+        private async void GoBack(object sender, EventArgs e)
+        {
+            await Shell.Current.Navigation.PopAsync();
         }
     }
 }

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlatoVoiturage1.Views.InscriptionPage"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+        <StackLayout>
+            <ImageButton Source="back_button.png" BackgroundColor="White" HeightRequest="35" HorizontalOptions="Start" Clicked="GoBack"/>
+            <StackLayout Margin="20,0,20,0">  
+                <!-- Placeholder-->
+                <Frame BorderColor="Transparent" HeightRequest="50"/>
+                <Frame BorderColor="{StaticResource Primary}" CornerRadius="25">
+                    <Label Text="Inscription" TextColor="Black" HorizontalOptions="Center" FontSize="17"/>
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -118,10 +118,13 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\chien.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\back_button.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadUnhandledDeviceExceptionPlatoVoiturage1AndroidHideInfoBar="True" TriggeredFromHotReload="False" />
+      <UserProperties TriggeredFromHotReload="False" XamarinHotReloadUnhandledDeviceExceptionPlatoVoiturage1AndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

@@ -1,5 +1,4 @@
-﻿using PlatoVoiturage1.ViewModels;
-using PlatoVoiturage1.Views;
+﻿using PlatoVoiturage1.Views;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
@@ -11,8 +10,6 @@ namespace PlatoVoiturage1
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

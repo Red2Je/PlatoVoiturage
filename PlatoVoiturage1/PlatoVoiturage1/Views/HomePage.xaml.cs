@@ -24,5 +24,10 @@ namespace PlatoVoiturage1.Views
                 Shell.Current.FlyoutIsPresented = true;
             }
         }
+
+        private async void GoToLoginPage(object sender, EventArgs e)
+        {
+            await Shell.Current.Navigation.PushAsync(new LoginPage());
+        }
     }
 }
