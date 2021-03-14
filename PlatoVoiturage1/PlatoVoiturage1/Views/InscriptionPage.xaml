@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PlatoVoiturage1.Views.InscriptionPage"
+             xmlns:services="clr-namespace:PlatoVoiturage1.Services"
              Shell.NavBarIsVisible="False">
     <ContentPage.Content>
         <StackLayout>
@@ -12,6 +13,24 @@
                 <Frame BorderColor="{StaticResource Primary}" CornerRadius="25">
                     <Label Text="Inscription" TextColor="Black" HorizontalOptions="Center" FontSize="17"/>
                 </Frame>
+                <Frame BorderColor="Gray" CornerRadius="50" Padding="20,0,20,0">
+                    <Entry Placeholder="Email" PlaceholderColor="Gray" TextColor="Black" Keyboard="Email"/>
+                </Frame>
+                <Frame BorderColor="Gray" CornerRadius="50" Padding="20,0,20,0">
+                    <Entry Placeholder="Nom" PlaceholderColor="Gray" TextColor="Black"/>
+                </Frame>
+                <Frame BorderColor="Gray" CornerRadius="50" Padding="20,0,20,0">
+                    <Entry Placeholder="Prénom" PlaceholderColor="Gray" TextColor="Black"/>
+                </Frame>
+                <Frame BorderColor="Gray" CornerRadius="50" Padding="20,0,20,0">
+                    <Entry Placeholder="Téléphone" PlaceholderColor="Gray" TextColor="Black" Keyboard="Telephone">
+                        <Entry.Behaviors>
+                            <services:NumericValidationBehavior/>
+                        </Entry.Behaviors>
+                    </Entry>
+                </Frame>
+                <Frame BorderColor="Transparent" HeightRequest="100"/>
+                <Button Text="S'inscrire" CornerRadius="50"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
