@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlatoVoiturage1.Views.JourneySearchPage"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame BorderColor="{StaticResource Primary}" BackgroundColor="{StaticResource Primary}" CornerRadius="50" Padding="5,0,5,0" HorizontalOptions="Start" WidthRequest="50">
+                    <ImageButton Source="burger_white.png" WidthRequest="50"  HeightRequest="50" BackgroundColor="{StaticResource Primary}" HorizontalOptions="StartAndExpand" Clicked="ImageButton_Clicked" />
+                </Frame>
+                <StackLayout Margin="20,10,20,0">
+                    <Frame BorderColor="{StaticResource Primary}" CornerRadius="50" BackgroundColor="{StaticResource Primary}" Margin="0,50,0,0">
+                        <Label Text="Recherche de trajet" FontSize="25" HorizontalOptions="Center" TextColor="White"/>
+                    </Frame>
+                    <Frame BorderColor="Gray" CornerRadius="25" Padding="20,0,20,0">
+                        <Entry IsTextPredictionEnabled="False" TextColor="Black" Placeholder="Adresse de départ" PlaceholderColor="Gray"/>
+                    </Frame>
+                    <Frame BorderColor="Gray" CornerRadius="25" Padding="20,0,20,0">
+                        <Entry IsTextPredictionEnabled="False" TextColor="Black" Placeholder="Adresse d'arrivée" PlaceholderColor="Gray"/>
+                    </Frame>
+                    <Frame BackgroundColor="{StaticResource Primary}" CornerRadius="25" Padding="0,10,0,10">
+                        <Label Text="Heure de départ" FontSize="17" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White"/>
+                    </Frame>
+                    <Frame BorderColor="Gray" CornerRadius="25" Padding="20,0,20,0">
+                        <TimePicker TextColor="Black"/>
+                    </Frame>
+                    <Button Text="Rechercher" BackgroundColor="{StaticResource Primary}" CornerRadius="25"/>
+                    <Frame BorderColor="Gray" CornerRadius="25" Margin="0,50,0,0" HeightRequest="200">
+                        <!-- TODO Complete this part to add the list of the current user's journey
+                    <CollectionView ItemsSource="{Binding}" ItemsLayout="VerticalList" BackgroundColor="Black">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <ScrollView>
+                                    <StackLayout>
+                                    
+                                    </StackLayout>
+                                </ScrollView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>-->
+                    </Frame>
+
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -35,6 +35,10 @@
     <FlyoutItem Title="Acceuil" Icon="logo.png">
         <ShellContent Route="HomePage" ContentTemplate="{DataTemplate local:HomePage}"/>
     </FlyoutItem>
+    <FlyoutItem Title="Recherche un trajet" Icon="chercher_trajet.png">
+        <ShellContent Route="JourneySearchPage" ContentTemplate="{DataTemplate local:JourneySearchPage}"/>
+    </FlyoutItem>
+
     <FlyoutItem Title="Proposer un trajet" Icon="proposer_trajet.png">
         <ShellContent Route="ProposerTrajet" ContentTemplate="{DataTemplate local:ProposerTrajet}"/>
     </FlyoutItem>
