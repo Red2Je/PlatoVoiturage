@@ -16,7 +16,7 @@
                         <Entry Placeholder="E-mail" PlaceholderColor="Gray" HeightRequest="50" Keyboard="Email" TextColor="Black"/>
                     </Frame>
                     <Frame BorderColor="Gray" CornerRadius="50" Padding="25,0,25,0">
-                        <Entry Placeholder="Password" PlaceholderColor="Gray" HeightRequest="50" IsPassword="True" TextColor="Black"/>
+                        <Entry Placeholder="Mot de passe" PlaceholderColor="Gray" HeightRequest="50" IsPassword="True" TextColor="Black"/>
                     </Frame>
                     <!--This frame is just a placeholder to make space with a stack layout. Use the heightRequest property to modify the space it takes-->
                     <Frame BorderColor="Transparent" HasShadow="False" HeightRequest="50"/>

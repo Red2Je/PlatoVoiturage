@@ -15,6 +15,7 @@ namespace PlatoVoiturage1.Views
         public ProposerTrajet()
         {
             InitializeComponent();
+            DepartureTime.Time = DateTime.Now.TimeOfDay;
         }
 
         private void ImageButton_Clicked(object sender, EventArgs e)
@@ -36,19 +37,12 @@ namespace PlatoVoiturage1.Views
 
             //TODO changer le modèle pour enregistrer les préférences
             //switch casing doesnt work as the color static values arent const            
-            if(se.BackgroundColor == Color.White)
+            if(se.BackgroundColor == Color.Red)
             {
                 se.BackgroundColor = Color.Green;
             } else
-                if(se.BackgroundColor == Color.Green)
-                {
-                    se.BackgroundColor = Color.Red;
-                }
-                else
-                {
-                    se.BackgroundColor = Color.White;
-                }
-        }
+                se.BackgroundColor = Color.Red;
+            }
 
  
     }

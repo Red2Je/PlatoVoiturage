@@ -15,6 +15,7 @@ namespace PlatoVoiturage1.Views
         public JourneySearchPage()
         {
             InitializeComponent();
+            DepartureTime.Time = DateTime.Now.TimeOfDay;
         }
         private void ImageButton_Clicked(object sender, EventArgs e)
         {

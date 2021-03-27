@@ -22,6 +22,7 @@
                     <RowDefinition Height="100"/>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="100"/>
+                    <RowDefinition Height="18"/>
 
                 </Grid.RowDefinitions>
                 <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0" HeightRequest="50">
@@ -48,7 +49,7 @@
                     <Label Text="Renseignez l'heure de départ" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
                 </Frame>
                 <Frame BorderColor="Gray" Padding ="0,0,0,0" Grid.Row="7" Grid.Column="0">
-                    <TimePicker TextColor="Black" />
+                    <TimePicker x:Name="DepartureTime" TextColor="Black" />
                 </Frame>
                 <Frame BorderColor="{StaticResource Primary}" CornerRadius="50" Padding="0,0,0,0" Grid.Row="8" Grid.Column="0">
                     <Label Text="Renseignez le nombre de places" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
@@ -74,32 +75,40 @@
                     <StackLayout HeightRequest="100">
                         <Label Text="Animaux" TextColor="Black" HorizontalOptions="Center"/>
                         <Frame BorderColor="Gray" Padding="0,0,0,0">
-                            <ImageButton Source="chien.png" HeightRequest="50" BackgroundColor="White" Clicked="ChangeColor"/>
+                            <ImageButton Source="chien.png" HeightRequest="50" BackgroundColor="Green" Clicked="ChangeColor"/>
                         </Frame>
                     </StackLayout>
                     <StackLayout HeightRequest="100">
                         <Label Text="Fumée" TextColor="Black" HorizontalOptions="Center"/>
                         <Frame BorderColor="Gray" Padding="0,0,0,0">
-                            <ImageButton Source="cigarette.png" HeightRequest="50" BackgroundColor="White" Clicked="ChangeColor"/>
+                            <ImageButton Source="cigarette.png" HeightRequest="50" BackgroundColor="Green" Clicked="ChangeColor"/>
                         </Frame>
                     </StackLayout>
                     <StackLayout HeightRequest="100">
                         <Label Text="Musique" TextColor="Black" HorizontalOptions="Center"/>
                         <Frame BorderColor="Gray" Padding="0,0,0,0">
-                            <ImageButton Source="music.png" HeightRequest="50" BackgroundColor="White" Clicked="ChangeColor"/>
+                            <ImageButton Source="music.png" HeightRequest="50" BackgroundColor="Green" Clicked="ChangeColor"/>
                         </Frame>
                     </StackLayout>
                     <StackLayout HeightRequest="100">
                         <Label Text="Conversation" TextColor="Black" HorizontalOptions="Center"/>
                         <Frame BorderColor="Gray" Padding="0,0,0,0">
-                            <ImageButton Source="conversation.png" HeightRequest="50" BackgroundColor="White" Clicked="ChangeColor"/>
+                            <ImageButton Source="conversation.png" HeightRequest="50" BackgroundColor="Green" Clicked="ChangeColor"/>
                         </Frame>
                     </StackLayout>
+
                 </StackLayout>
-                <Grid Margin="10,0,10,0" Grid.Row="15" Grid.Column="0" HorizontalOptions="Center" >
-                    <Button Grid.Row ="0" Grid.Column="0" Text="Retour" BackgroundColor="{StaticResource Primary}" Clicked="On_Return_Button_Clicked"/>
-                    <Button Grid.Row="0" Grid.Column="3" Text="Valider" BackgroundColor="{StaticResource Primary}"/>
-                </Grid>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Grid.Row="14">
+                    <Label Text="a" TextColor="Transparent" BackgroundColor="Green"/>
+                    <Label Text="Ne me dérange pas" TextColor="Black" FontSize="12"/>
+                    <Label Text="a" TextColor="Transparent" BackgroundColor="Red"/>
+                    <Label Text="Ne préfere pas" TextColor="Black" FontSize="12"/>
+                </StackLayout>
+                <Button Grid.Row="15" Grid.Column="0" Text="Valider" VerticalOptions="Center" BackgroundColor="{StaticResource Primary}" Margin="0,10,0,0"/>
+
+
+
 
 
             </Grid>

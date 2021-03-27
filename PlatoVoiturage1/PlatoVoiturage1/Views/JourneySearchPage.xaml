@@ -23,7 +23,7 @@
                         <Label Text="Heure de départ" FontSize="17" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White"/>
                     </Frame>
                     <Frame BorderColor="Gray" CornerRadius="25" Padding="20,0,20,0">
-                        <TimePicker TextColor="Black"/>
+                        <TimePicker x:Name="DepartureTime" TextColor="Black"/>
                     </Frame>
                     <Button Text="Rechercher" BackgroundColor="{StaticResource Primary}" CornerRadius="25"/>
                     <Frame BorderColor="Gray" CornerRadius="25" Margin="0,50,0,0" HeightRequest="200">

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Net.Mail;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,9 +18,9 @@ namespace PlatoVoiturage1.Views
         {
             InitializeComponent();
         }
-        private void SendForgotenPassword(object sender, EventArgs e)
+        private async void SendForgotenPassword(object sender, EventArgs e)
         {
-            //TODO : un mail avec le mot de passe
+            await Shell.Current.Navigation.PushAsync(new ResetPasswordPage());
         }
         private async void GoToInscription(object sender, EventArgs e)
         {

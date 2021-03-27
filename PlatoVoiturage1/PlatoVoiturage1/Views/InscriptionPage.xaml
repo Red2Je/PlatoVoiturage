@@ -29,8 +29,18 @@
                         </Entry.Behaviors>
                     </Entry>
                 </Frame>
+
+                <Frame BorderColor="Gray" CornerRadius="50" Padding="20,0,20,0">
+                    <Entry x:Name="Password" Placeholder="Mot de passe" PlaceholderColor="Gray" TextColor="Black" IsPassword="True"/>
+                </Frame>
+
+                <Frame BorderColor="Gray" CornerRadius="50" Padding="20,0,20,0">
+                    <Entry x:Name="PasswordConfirmation" Placeholder="Confirmez le mot de passe" PlaceholderColor="Gray" TextColor="Black" IsPassword="True"/>
+                </Frame>
+                <Label x:Name="FailedPasswordText" Text="a" TextColor="Transparent"/>
                 <Frame BorderColor="Transparent" HeightRequest="100"/>
-                <Button Text="S'inscrire" CornerRadius="50"/>
+                <Button Text="S'inscrire" CornerRadius="50" Clicked="ConfirmInscription"/>
+                
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
