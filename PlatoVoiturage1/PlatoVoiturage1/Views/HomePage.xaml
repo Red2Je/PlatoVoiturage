@@ -18,18 +18,18 @@
                 <Label Text="Vos trajets à venir" HorizontalOptions="Center" FontSize="25" TextColor="White"/>
             </Frame>
             <Frame BorderColor="Gray" CornerRadius="25" Margin="20,0,20,0" HeightRequest="150">
-                <!-- TODO Complete this part to add the list of the current user's journey
-                <CollectionView ItemsSource="{Binding}" ItemsLayout="VerticalList" BackgroundColor="Black">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <ScrollView>
-                                <StackLayout>
-                                    
-                                </StackLayout>
-                            </ScrollView>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>-->
+                <!-- TODO Complete this part to add the list of the current user's journey-->
+                <ScrollView>
+                    <CollectionView ItemsSource="{Binding journey}" ItemsLayout="VerticalList" BackgroundColor="pink" EmptyView="Pas de trajets réservés">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                
+                                    <Label Text="{Binding adresseArr}" TextColor="Black" BackgroundColor="Purple"/>
+  
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </ScrollView>
             </Frame>
             <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" Margin="20,25,20,0" BackgroundColor="{StaticResource Primary}">
                 <Label Text="Vos propositions de trajets" HorizontalOptions="Center" FontSize="25" TextColor="White"/>
