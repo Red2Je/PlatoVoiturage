@@ -8,15 +8,17 @@ using System.Net.Mail;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using PlatoVoiturage1.Models;
 
 namespace PlatoVoiturage1.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        public LoginPage()
+        public LoginPage(Client c, bool isAuthentified)
         {
             InitializeComponent();
+            //TODO connexion
         }
         private async void SendForgotenPassword(object sender, EventArgs e)
         {

@@ -4,29 +4,34 @@ using System.Text;
 
 namespace PlatoVoiturage1.Models
 {
-    class Journey
+    public class Journey
     {
 
 
-        public int eid { get; set; }
-        public string adressDep { get; set; }
-        public string adresseArr { get; set; }
+        public int Eid { get; set; }
+        public string AdressDep { get; set; }
+        public string AdresseArr { get; set; }
         public string Hdep { get; set; }
         public string Harr { get; set; }
-        public int km { get; set; }
-        public int nbPlaces { get; set; }
+        public int Km { get; set; }
+        public int NbPlaces { get; set; }
 
         public Journey(int eid, string adressDep, string adresseArr, string hdep, string harr, int km, int nbPlaces)
         {
-            this.eid = eid;
-            this.adressDep = adressDep;
-            this.adresseArr = adresseArr;
+            this.Eid = eid;
+            this.AdressDep = adressDep;
+            this.AdresseArr = adresseArr;
             Hdep = hdep;
             Harr = harr;
-            this.km = km;
-            this.nbPlaces = nbPlaces;
+            this.Km = km;
+            this.NbPlaces = nbPlaces;
         }
 
+
+        public override string ToString()
+        {
+            return ("Eid = " + Eid + " adressDep = " + AdressDep + " adressArr = " + AdresseArr + " hdep = " + Hdep + " harr = " + Harr + " km = " + Km + " nbplaces = " + NbPlaces);
+        }
 
     }
 }

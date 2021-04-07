@@ -4,19 +4,19 @@ using System.Text;
 
 namespace PlatoVoiturage1.Models
 {
-    class Client
+    public class Client
     {
-        private string email { get; set; }
-        private string nom { get; set; }
-        private string prenom { get; set; }
-        private string telephone { get; set; }
+        public string Email { get; set; }
+        public string Nom { get; set; }
+        public string Prenom { get; set; }
+        public string Telephone { get; set; }
 
         public Client(string email, string nom, string prenom, string telephone)
         {
-            this.email = email;
-            this.nom = nom;
-            this.prenom = prenom;
-            this.telephone = telephone;
+            this.Email = email;
+            this.Nom = nom;
+            this.Prenom = prenom;
+            this.Telephone = telephone;
         }
 
     }

@@ -20,14 +20,32 @@
             <Frame BorderColor="Gray" CornerRadius="25" Margin="20,0,20,0" HeightRequest="150">
                 <!-- TODO Complete this part to add the list of the current user's journey-->
                 <ScrollView>
-                    <CollectionView ItemsSource="{Binding journey}" ItemsLayout="VerticalList" BackgroundColor="pink" EmptyView="Pas de trajets réservés">
+                    <CollectionView ItemsSource="{Binding reservedJourney}" ItemsLayout="VerticalList" HeightRequest="150">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
+                                <StackLayout>
+                                    <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" Padding ="5" Margin="0,5,0,5">
+                                        <StackLayout Orientation="Horizontal" HeightRequest="30">
+                                            <Image Source="proposer_trajet.png"/>
+                                            <Label Text="{Binding AdressDep}" VerticalTextAlignment="Center" TextColor="Black"/>
+                                        </StackLayout>
+                                        
+                                    </Frame>
+                                        
+                                </StackLayout>
                                 
-                                    <Label Text="{Binding adresseArr}" TextColor="Black" BackgroundColor="Purple"/>
-  
+
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <ContentView BackgroundColor="LightGray">
+                                <StackLayout HorizontalOptions="CenterAndExpand"
+                                             VerticalOptions="CenterAndExpand">
+                                    <Label Text="Aucun trajet à afficher" HorizontalTextAlignment="Center" TextColor="Black"/>
+                                    <Label Text="Veuillez vous connecter" HorizontalTextAlignment="Center" TextColor="Black"/>
+                                </StackLayout>
+                            </ContentView>
+                        </CollectionView.EmptyView>
                     </CollectionView>
                 </ScrollView>
             </Frame>
@@ -35,18 +53,36 @@
                 <Label Text="Vos propositions de trajets" HorizontalOptions="Center" FontSize="25" TextColor="White"/>
             </Frame>
             <Frame BorderColor="Gray" CornerRadius="25" Margin="20,0,20,0" HeightRequest="150">
-                <!-- TODO Complete this part to add the list of the current user's incoming covoituyrage
-                <CollectionView ItemsSource="{Binding}" ItemsLayout="VerticalList" BackgroundColor="Black">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <ScrollView>
+                <!-- TODO Complete this part to add the list of the current user's journey-->
+                <ScrollView>
+                    <CollectionView ItemsSource="{Binding proposedJourney}" ItemsLayout="VerticalList" HeightRequest="150">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
                                 <StackLayout>
-                                    
+                                    <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" Padding ="5" Margin="0,5,0,5">
+                                        <StackLayout Orientation="Horizontal" HeightRequest="30">
+                                            <Image Source="proposer_trajet.png"/>
+                                            <Label Text="{Binding AdressDep}" VerticalTextAlignment="Center" TextColor="Black"/>
+                                        </StackLayout>
+                                        
+                                    </Frame>
+
                                 </StackLayout>
-                            </ScrollView>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>-->
+
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <ContentView BackgroundColor="LightGray">
+                                <StackLayout HorizontalOptions="CenterAndExpand"
+                                             VerticalOptions="CenterAndExpand">
+                                    <Label Text="Aucun trajet à afficher" HorizontalTextAlignment="Center" TextColor="Black"/>
+                                    <Label Text="Veuillez vous connecter" HorizontalTextAlignment="Center" TextColor="Black"/>
+                                </StackLayout>
+                            </ContentView>
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+                </ScrollView>
             </Frame>
 
 

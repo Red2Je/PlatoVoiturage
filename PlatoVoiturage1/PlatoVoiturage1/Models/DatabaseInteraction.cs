@@ -28,7 +28,7 @@ namespace PlatoVoiturage1.Models
             checkDataBaseConnection();
             connection.Open();
 
-            NpgsqlCommand comm = new NpgsqlCommand("SELECT * FROM propose WHERE eid = (@email)",connection);
+            NpgsqlCommand comm = new NpgsqlCommand("SELECT * FROM propose as pr, utilisateur as ut, trajet as tr WHERE ut.email = (@email) AND ut.email = pr.email AND pr.eid = tr.eid;", connection);
             comm.Parameters.AddWithValue("email",userEmail) ;
 
             NpgsqlDataReader result = comm.ExecuteReader();

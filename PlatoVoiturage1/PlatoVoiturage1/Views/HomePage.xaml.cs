@@ -15,7 +15,8 @@ namespace PlatoVoiturage1.Views
     public partial class HomePage : ContentPage
     {
 
-        private List<Journey> journey = new List<Journey>();
+        public IList<Journey> reservedJourney { get; private set; }
+        public IList<Journey> proposedJourney { get; private set; }
         private bool isAuthentified = false;
         private Client client;
         
@@ -23,8 +24,22 @@ namespace PlatoVoiturage1.Views
         {
             try
             {
-                this.journey = DatabaseInteraction.getReservedJourneyList("milaclim@gmail.com");
-                Console.WriteLine("bite : " + journey.ElementAt(0).adresseArr);
+                reservedJourney = new List<Journey>();
+                proposedJourney = new List<Journey>();
+                if (isAuthentified)
+                {
+                    this.reservedJourney = DatabaseInteraction.getReservedJourneyList(client.Email);
+                    this.proposedJourney = DatabaseInteraction.getProposedJourneyList(client.Email);
+                }
+                //To remove, for testing purpose
+                this.reservedJourney = DatabaseInteraction.getReservedJourneyList("milaclim@gmail.com");
+                Console.WriteLine("Bite1 " + reservedJourney[0].ToString());
+                this.proposedJourney = DatabaseInteraction.getProposedJourneyList("thomastefarsi@gmail.com");
+                Console.WriteLine("Bite2 " + proposedJourney[0].ToString());
+
+
+
+                BindingContext = this;
             }
             catch (Exception e)
             {
@@ -55,7 +70,7 @@ namespace PlatoVoiturage1.Views
 
         private async void GoToLoginPage(object sender, EventArgs e)
         {
-            await Shell.Current.Navigation.PushAsync(new LoginPage());
+            await Shell.Current.Navigation.PushAsync(new LoginPage(this.client, isAuthentified));
         }
     }
 }
