@@ -33,9 +33,9 @@ namespace PlatoVoiturage1.Views
                 }
                 //To remove, for testing purpose
                 this.reservedJourney = DatabaseInteraction.getReservedJourneyList("milaclim@gmail.com");
-                Console.WriteLine("Bite1 " + reservedJourney[0].ToString());
-                this.proposedJourney = DatabaseInteraction.getProposedJourneyList("thomastefarsi@gmail.com");
-                Console.WriteLine("Bite2 " + proposedJourney[0].ToString());
+                //Console.WriteLine("Bite1 " + reservedJourney[0].ToString());  //imagine ton programme marche bien mais ce sont tes tests qui cassent tout. Non je rigole. Mais imagine quand même.
+                this.proposedJourney = DatabaseInteraction.getProposedJourneyList("milaclim@gmail.com");
+                //Console.WriteLine("Bite2 " + proposedJourney[0].ToString());
 
 
 
