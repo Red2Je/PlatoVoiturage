@@ -28,15 +28,12 @@ namespace PlatoVoiturage1.Views
                 proposedJourney = new List<Journey>();
                 if (isAuthentified)
                 {
-                    this.reservedJourney = DatabaseInteraction.getReservedJourneyList(client.Email);
-                    this.proposedJourney = DatabaseInteraction.getProposedJourneyList(client.Email);
+                    this.reservedJourney = DatabaseInteraction.GetReservedJourneyList(client.Email);
+                    this.proposedJourney = DatabaseInteraction.GetProposedJourneyList(client.Email);
                 }
-                //To remove, for testing purpose
-                this.reservedJourney = DatabaseInteraction.getReservedJourneyList("milaclim@gmail.com");
-                Console.WriteLine("Bite1 " + reservedJourney[0].ToString());
-                this.proposedJourney = DatabaseInteraction.getProposedJourneyList("thomastefarsi@gmail.com");
-                Console.WriteLine("Bite2 " + proposedJourney[0].ToString());
-
+                this.reservedJourney = DatabaseInteraction.GetReservedJourneyList("milaclim@gmail.com");
+                Console.WriteLine(reservedJourney[0].ToString());
+                
 
 
                 BindingContext = this;
