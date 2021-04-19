@@ -65,5 +65,14 @@ namespace PlatoVoiturage1.Models
             return (output);
         }
 
+        public static void proposeNewJourney(string userEmail, Journey j)
+        {
+            checkDataBaseConnection();
+            connection.Open();
+
+            NpgsqlCommand comm = new NpgsqlCommand("INSERT INTO trajet VALUES (" + j.Eid + ", '" + j.AdressDep + "', '" + j.AdresseArr + "', '" + j.Hdep + "', '" + j.Harr + "', " + j.Km + ", " + j.NbPlaces + ");", connection);
+
+            NpgsqlCommand comm2 = new NpgsqlCommand("INSERT INTO propose VALUES ('" + userEmail + "', " + j.Eid +");", connection);
+        }
     }
 }
