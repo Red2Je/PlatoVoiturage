@@ -127,10 +127,13 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\chercher_trajet.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\arrowRight.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadUnhandledDeviceExceptionPlatoVoiturage1AndroidHideInfoBar="True" TriggeredFromHotReload="False" />
+      <UserProperties TriggeredFromHotReload="False" XamarinHotReloadUnhandledDeviceExceptionPlatoVoiturage1AndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

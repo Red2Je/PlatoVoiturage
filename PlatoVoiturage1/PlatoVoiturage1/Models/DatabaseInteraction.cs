@@ -67,7 +67,7 @@ namespace PlatoVoiturage1.Models
 
         public static void proposeNewJourney(string userEmail, Journey j)
         {
-            checkDataBaseConnection();
+            CheckDataBaseConnection();
             connection.Open();
 
             NpgsqlCommand comm = new NpgsqlCommand("INSERT INTO trajet VALUES (" + j.Eid + ", '" + j.AdressDep + "', '" + j.AdresseArr + "', '" + j.Hdep + "', '" + j.Harr + "', " + j.Km + ", " + j.NbPlaces + ");", connection);

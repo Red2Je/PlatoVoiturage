@@ -16,6 +16,8 @@ namespace PlatoVoiturage1.Models
         public int Km { get; set; }
         public int NbPlaces { get; set; }
 
+        public string TransformedJourney { get; set; }
+
         public Journey(int eid, string adressDep, string adresseArr, string hdep, string harr, int km, int nbPlaces)
         {
             this.Eid = eid;
@@ -25,6 +27,7 @@ namespace PlatoVoiturage1.Models
             Harr = harr;
             this.Km = km;
             this.NbPlaces = nbPlaces;
+            this.TransformedJourney = adressDep + "\n -> \n" + adresseArr;
         }
 
 

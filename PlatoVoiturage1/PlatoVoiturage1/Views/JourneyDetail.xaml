@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlatoVoiturage1.Views.JourneyDetail"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+        <StackLayout>
+            <ImageButton Source="back_button.png" BackgroundColor="White" HeightRequest="35" HorizontalOptions="Start" Clicked="GoBack"/>
+            <StackLayout Padding="20">
+                <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" BackgroundColor="{StaticResource Primary}">
+                    <Label Text="Votre trajet" HorizontalOptions="Center" FontSize="25" TextColor="White"/>
+                    
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

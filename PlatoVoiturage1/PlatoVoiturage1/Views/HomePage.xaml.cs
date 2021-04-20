@@ -69,5 +69,12 @@ namespace PlatoVoiturage1.Views
         {
             await Shell.Current.Navigation.PushAsync(new LoginPage(this.client, isAuthentified));
         }
+
+        private async void giveDetails(object sender, EventArgs e)
+        {
+            ImageButton s = (ImageButton)sender;
+
+            await Shell.Current.Navigation.PushAsync(new JourneyDetail((Journey)s.BindingContext));
+        }
     }
 }

@@ -19,15 +19,16 @@
             </Frame>
             <Frame BorderColor="Gray" CornerRadius="25" Margin="20,0,20,0" HeightRequest="150">
                 <!-- TODO Complete this part to add the list of the current user's journey-->
-                <ScrollView>
+                <ScrollView VerticalScrollBarVisibility="Always">
                     <CollectionView ItemsSource="{Binding reservedJourney}" ItemsLayout="VerticalList" HeightRequest="150">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout>
-                                    <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" Padding ="5" Margin="0,5,0,5">
-                                        <StackLayout Orientation="Horizontal" HeightRequest="30">
+                                    <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" Padding ="5" Margin="0,5,0,5" >
+                                        <StackLayout Orientation="Horizontal" HeightRequest="50">
                                             <Image Source="proposer_trajet.png"/>
-                                            <Label Text="{Binding AdressDep}" VerticalTextAlignment="Center" TextColor="Black"/>
+                                            <Label Text="{Binding TransformedJourney}" VerticalTextAlignment="Center" TextColor="Black"/>
+                                            <ImageButton Source="arrowRight.png" Clicked="giveDetails" BackgroundColor="White"/>
                                         </StackLayout>
                                         
                                     </Frame>
@@ -54,15 +55,15 @@
             </Frame>
             <Frame BorderColor="Gray" CornerRadius="25" Margin="20,0,20,0" HeightRequest="150">
                 <!-- TODO Complete this part to add the list of the current user's journey-->
-                <ScrollView>
+                <ScrollView VerticalScrollBarVisibility="Always">
                     <CollectionView ItemsSource="{Binding proposedJourney}" ItemsLayout="VerticalList" HeightRequest="150">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout>
                                     <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" Padding ="5" Margin="0,5,0,5">
-                                        <StackLayout Orientation="Horizontal" HeightRequest="30">
+                                        <StackLayout Orientation="Horizontal" HeightRequest="50">
                                             <Image Source="proposer_trajet.png"/>
-                                            <Label Text="{Binding AdressDep}" VerticalTextAlignment="Center" TextColor="Black"/>
+                                            <Label Text="{Binding TransformedJourney}" VerticalTextAlignment="Center" TextColor="Black"/>
                                         </StackLayout>
                                         
                                     </Frame>
