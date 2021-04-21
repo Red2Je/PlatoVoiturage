@@ -32,7 +32,7 @@ namespace PlatoVoiturage1.Views
                     this.ProposedJourney = DatabaseInteraction.GetProposedJourneyList(Client.Email);
                 }
                 this.ReservedJourney = DatabaseInteraction.GetReservedJourneyList("milaclim@gmail.com");
-                Console.WriteLine(ReservedJourney[0].ToString());
+                Console.WriteLine("bite"+ReservedJourney[0].ToString()) ;
                 
 
 
@@ -74,7 +74,7 @@ namespace PlatoVoiturage1.Views
         {
             ImageButton s = (ImageButton)sender;
 
-            await Shell.Current.Navigation.PushAsync(new JourneyDetail((Journey)s.BindingContext));
+            await Shell.Current.Navigation.PushAsync(new JourneyDetail((Journey)s.BindingContext, this));
         }
     }
 }

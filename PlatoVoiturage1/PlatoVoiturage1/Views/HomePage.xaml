@@ -20,7 +20,7 @@
             <Frame BorderColor="Gray" CornerRadius="25" Margin="20,0,20,0" HeightRequest="150">
                 <!-- TODO Complete this part to add the list of the current user's journey-->
                 <ScrollView VerticalScrollBarVisibility="Always">
-                    <CollectionView ItemsSource="{Binding reservedJourney}" ItemsLayout="VerticalList" HeightRequest="150">
+                    <CollectionView ItemsSource="{Binding ReservedJourney}" ItemsLayout="VerticalList" HeightRequest="150">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout>
@@ -56,7 +56,7 @@
             <Frame BorderColor="Gray" CornerRadius="25" Margin="20,0,20,0" HeightRequest="150">
                 <!-- TODO Complete this part to add the list of the current user's journey-->
                 <ScrollView VerticalScrollBarVisibility="Always">
-                    <CollectionView ItemsSource="{Binding proposedJourney}" ItemsLayout="VerticalList" HeightRequest="150">
+                    <CollectionView ItemsSource="{Binding ProposedJourney}" ItemsLayout="VerticalList" HeightRequest="150">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout>

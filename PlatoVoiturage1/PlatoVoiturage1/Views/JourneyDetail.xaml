@@ -4,14 +4,34 @@
              x:Class="PlatoVoiturage1.Views.JourneyDetail"
              Shell.NavBarIsVisible="False">
     <ContentPage.Content>
-        <StackLayout>
-            <ImageButton Source="back_button.png" BackgroundColor="White" HeightRequest="35" HorizontalOptions="Start" Clicked="GoBack"/>
-            <StackLayout Padding="20">
-                <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" BackgroundColor="{StaticResource Primary}">
-                    <Label Text="Votre trajet" HorizontalOptions="Center" FontSize="25" TextColor="White"/>
-                </Frame>
-                
+        <ScrollView>
+            <StackLayout>
+                <ImageButton Source="back_button.png" BackgroundColor="White" HeightRequest="35" HorizontalOptions="Start" Clicked="GoBack"/>
+                <StackLayout Padding="20">
+                    <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" BackgroundColor="{StaticResource Primary}">
+                        <Label Text="Votre trajet" HorizontalOptions="Center" FontSize="25" TextColor="White"/>
+                    </Frame>
+                    <Frame BorderColor="Gray" CornerRadius="25">
+                        <Label Text ="{Binding AddressDep}" TextColor="Black"/>
+                    </Frame>
+                    <Frame BorderColor="Gray" CornerRadius="25">
+                        <Label Text="{Binding AddressArr}" TextColor="Black"/>
+                    </Frame>
+                    <Frame BorderColor="Gray" CornerRadius="25">
+                        <Label Text="{Binding Hdep}" TextColor="Black"/>
+                    </Frame>
+                    <Frame BorderColor="Gray" CornerRadius="25">
+                        <Label Text="{Binding Harr}" TextColor="Black"/>
+                    </Frame>
+                    <Frame BorderColor="Gray" CornerRadius="25">
+                        <Label Text="{Binding Km}" TextColor="Black"/>
+                    </Frame>
+                    <Frame BorderColor="Gray" CornerRadius="25">
+                        <Label Text="{Binding Nbplaces}" TextColor="Black"/>
+                    </Frame>
+                    <Button Text="Voir sur Maps" BackgroundColor="{StaticResource Primary}" Clicked="GoToMaps"/>
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
