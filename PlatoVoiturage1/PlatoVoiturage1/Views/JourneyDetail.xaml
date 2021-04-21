@@ -9,8 +9,8 @@
             <StackLayout Padding="20">
                 <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" BackgroundColor="{StaticResource Primary}">
                     <Label Text="Votre trajet" HorizontalOptions="Center" FontSize="25" TextColor="White"/>
-                    
                 </Frame>
+                
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

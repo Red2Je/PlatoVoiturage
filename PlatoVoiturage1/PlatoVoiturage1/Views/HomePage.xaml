@@ -28,7 +28,7 @@
                                         <StackLayout Orientation="Horizontal" HeightRequest="50">
                                             <Image Source="proposer_trajet.png"/>
                                             <Label Text="{Binding TransformedJourney}" VerticalTextAlignment="Center" TextColor="Black"/>
-                                            <ImageButton Source="arrowRight.png" Clicked="giveDetails" BackgroundColor="White"/>
+                                            <ImageButton Source="arrowRight.png" Clicked="GiveDetails" BackgroundColor="White"/>
                                         </StackLayout>
                                         
                                     </Frame>

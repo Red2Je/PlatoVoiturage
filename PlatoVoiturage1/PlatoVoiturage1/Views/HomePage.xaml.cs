@@ -15,24 +15,24 @@ namespace PlatoVoiturage1.Views
     public partial class HomePage : ContentPage
     {
 
-        public IList<Journey> reservedJourney { get; private set; }
-        public IList<Journey> proposedJourney { get; private set; }
-        private bool isAuthentified = false;
-        private Client client;
+        public IList<Journey> ReservedJourney { get; private set; }
+        public IList<Journey> ProposedJourney { get; private set; }
+        private bool IsAuthentified = false;
+        private Client Client;
         
         public HomePage()
         {
             try
             {
-                reservedJourney = new List<Journey>();
-                proposedJourney = new List<Journey>();
-                if (isAuthentified)
+                ReservedJourney = new List<Journey>();
+                ProposedJourney = new List<Journey>();
+                if (IsAuthentified)
                 {
-                    this.reservedJourney = DatabaseInteraction.GetReservedJourneyList(client.Email);
-                    this.proposedJourney = DatabaseInteraction.GetProposedJourneyList(client.Email);
+                    this.ReservedJourney = DatabaseInteraction.GetReservedJourneyList(Client.Email);
+                    this.ProposedJourney = DatabaseInteraction.GetProposedJourneyList(Client.Email);
                 }
-                this.reservedJourney = DatabaseInteraction.GetReservedJourneyList("milaclim@gmail.com");
-                Console.WriteLine(reservedJourney[0].ToString());
+                this.ReservedJourney = DatabaseInteraction.GetReservedJourneyList("milaclim@gmail.com");
+                Console.WriteLine(ReservedJourney[0].ToString());
                 
 
 
@@ -67,10 +67,10 @@ namespace PlatoVoiturage1.Views
 
         private async void GoToLoginPage(object sender, EventArgs e)
         {
-            await Shell.Current.Navigation.PushAsync(new LoginPage(this.client, isAuthentified));
+            await Shell.Current.Navigation.PushAsync(new LoginPage(this.Client, IsAuthentified));
         }
 
-        private async void giveDetails(object sender, EventArgs e)
+        private async void GiveDetails(object sender, EventArgs e)
         {
             ImageButton s = (ImageButton)sender;
 
