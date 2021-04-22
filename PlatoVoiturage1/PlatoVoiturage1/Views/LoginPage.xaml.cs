@@ -15,11 +15,52 @@ namespace PlatoVoiturage1.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        public LoginPage(Client c, bool isAuthentified)
+        public string Email{get;set;}
+        public string Password { private get; set; }
+
+        private ContentPage HomePage;
+        public LoginPage(ContentPage HomePage)
         {
             InitializeComponent();
-            //TODO connexion
+            this.HomePage = HomePage;
+
         }
+
+        private async void Connect(object sender, EventArgs e)
+        {
+            Email = Em.Text;
+            Password = Pw.Text;
+            string result = DatabaseInteraction.login(Email, Password);
+            if(result == "logged in")
+            {
+                Client logged = DatabaseInteraction.getClient(Email);
+                //Removing the first homepage to replace it with the one with a client logged in
+                Shell.Current.Navigation.RemovePage(HomePage);
+                //Adding a page before this one in the navigation stack, logged in.
+                Shell.Current.Navigation.InsertPageBefore(new HomePage(logged, true),this);
+                //Popping the navigation stack to the new page with the user logged in
+                await Shell.Current.Navigation.PopAsync(); 
+            }
+            else if(result == "invalid password")
+            {
+                LoginError.Text = "Mot de passe incorrect";
+                LoginError.TextColor = Color.Red;
+            }
+            else if(result == "unknown user")
+            {
+                LoginError.Text = "Utilisateur inconnu";
+                LoginError.TextColor = Color.Red;
+            }
+            else
+            {
+                LoginError.Text = "Une erreur s'est produite, veuillez réessayer";
+                LoginError.TextColor = Color.Red;
+            }
+            Console.WriteLine(result);
+        }
+
+
+
         private async void SendForgotenPassword(object sender, EventArgs e)
         {
             await Shell.Current.Navigation.PushAsync(new ResetPasswordPage());

@@ -13,14 +13,15 @@
                         <Label Text="Connexion à votre compte Platovoiturage :" TextColor="Black" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontSize="17"/>
                     </Frame>
                     <Frame BorderColor="Gray" CornerRadius="50" Padding="25,0,25,0">
-                        <Entry Placeholder="E-mail" PlaceholderColor="Gray" HeightRequest="50" Keyboard="Email" TextColor="Black"/>
+                        <Entry x:Name="Em" Placeholder="E-mail" PlaceholderColor="Gray" HeightRequest="50" Keyboard="Email" TextColor="Black"/>
                     </Frame>
                     <Frame BorderColor="Gray" CornerRadius="50" Padding="25,0,25,0">
-                        <Entry Placeholder="Mot de passe" PlaceholderColor="Gray" HeightRequest="50" IsPassword="True" TextColor="Black"/>
+                        <Entry x:Name="Pw" Placeholder="Mot de passe" PlaceholderColor="Gray" HeightRequest="50" IsPassword="True" TextColor="Black" />
                     </Frame>
+                    <Label x:Name="LoginError" TextColor="Transparent" Text="" HorizontalTextAlignment="Center"/>
                     <!--This frame is just a placeholder to make space with a stack layout. Use the heightRequest property to modify the space it takes-->
                     <Frame BorderColor="Transparent" HasShadow="False" HeightRequest="50"/>
-                    <Button Text="Connexion" CornerRadius="50"/>
+                    <Button Text="Connexion" CornerRadius="50" Clicked="Connect"/>
                     <Button Text="Mot de passe oublié" TextColor="{StaticResource Primary}" HorizontalOptions="Center" BackgroundColor="White" Clicked="SendForgotenPassword" />
                     <Frame BorderColor="Transparent" HasShadow="False" HeightRequest="50"/>
                     <Button Text="Pas encore membre ? Inscrivez-vous" Clicked="GoToInscription"/>

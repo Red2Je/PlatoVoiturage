@@ -14,16 +14,16 @@
                     <Label Text="Inscription" TextColor="Black" HorizontalOptions="Center" FontSize="17"/>
                 </Frame>
                 <Frame BorderColor="Gray" CornerRadius="50" Padding="20,0,20,0">
-                    <Entry Placeholder="Email" PlaceholderColor="Gray" TextColor="Black" Keyboard="Email"/>
+                    <Entry x:Name="mail" Placeholder="Email" PlaceholderColor="Gray" TextColor="Black" Keyboard="Email"/>
                 </Frame>
                 <Frame BorderColor="Gray" CornerRadius="50" Padding="20,0,20,0">
-                    <Entry Placeholder="Nom" PlaceholderColor="Gray" TextColor="Black"/>
+                    <Entry x:Name="name" Placeholder="Nom" PlaceholderColor="Gray" TextColor="Black"/>
                 </Frame>
                 <Frame BorderColor="Gray" CornerRadius="50" Padding="20,0,20,0">
-                    <Entry Placeholder="Prénom" PlaceholderColor="Gray" TextColor="Black"/>
+                    <Entry x:Name="surname" Placeholder="Prénom" PlaceholderColor="Gray" TextColor="Black"/>
                 </Frame>
                 <Frame BorderColor="Gray" CornerRadius="50" Padding="20,0,20,0">
-                    <Entry Placeholder="Téléphone" PlaceholderColor="Gray" TextColor="Black" Keyboard="Telephone">
+                    <Entry x:Name="telephone" Placeholder="Téléphone" PlaceholderColor="Gray" TextColor="Black" Keyboard="Telephone">
                         <Entry.Behaviors>
                             <services:NumericValidationBehavior/>
                         </Entry.Behaviors>
@@ -37,7 +37,7 @@
                 <Frame BorderColor="Gray" CornerRadius="50" Padding="20,0,20,0">
                     <Entry x:Name="PasswordConfirmation" Placeholder="Confirmez le mot de passe" PlaceholderColor="Gray" TextColor="Black" IsPassword="True"/>
                 </Frame>
-                <Label x:Name="FailedPasswordText" Text="a" TextColor="Transparent"/>
+                <Label x:Name="FailedPasswordText" Text="a" TextColor="Transparent" HorizontalTextAlignment="Center"/>
                 <Frame BorderColor="Transparent" HeightRequest="100"/>
                 <Button Text="S'inscrire" CornerRadius="50" Clicked="ConfirmInscription"/>
                 

@@ -11,7 +11,7 @@
                 <Frame BorderColor="{StaticResource Primary}" BackgroundColor="{StaticResource Primary}" CornerRadius="50" Padding="5,0,5,0" Grid.Row="0" Grid.Column="0" WidthRequest="50">
                     <ImageButton Source="burger_white.png" Grid.Row="0" Grid.Column="0" WidthRequest="50"  HeightRequest="50" BackgroundColor="{StaticResource Primary}" HorizontalOptions="StartAndExpand" Clicked="ImageButton_Clicked" />
                 </Frame>
-                <Button Grid.Column="2" Grid.Row="0" Text ="Connexion" Clicked="GoToLoginPage" HorizontalOptions="EndAndExpand"/>
+                <Button x:Name="ConnectionButton" Grid.Column="2" Grid.Row="0" Text ="Connexion" Clicked="GoToLoginPage" HorizontalOptions="EndAndExpand"/>
                 
             </StackLayout>
             <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" Margin="20,100,20,0" BackgroundColor="{StaticResource Primary}">
@@ -20,7 +20,7 @@
             <Frame BorderColor="Gray" CornerRadius="25" Margin="20,0,20,0" HeightRequest="150">
                 <!-- TODO Complete this part to add the list of the current user's journey-->
                 <ScrollView VerticalScrollBarVisibility="Always">
-                    <CollectionView ItemsSource="{Binding ReservedJourney}" ItemsLayout="VerticalList" HeightRequest="150">
+                    <CollectionView x:Name ="ReservedView" ItemsLayout="VerticalList" HeightRequest="150">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout>
@@ -56,7 +56,7 @@
             <Frame BorderColor="Gray" CornerRadius="25" Margin="20,0,20,0" HeightRequest="150">
                 <!-- TODO Complete this part to add the list of the current user's journey-->
                 <ScrollView VerticalScrollBarVisibility="Always">
-                    <CollectionView ItemsSource="{Binding ProposedJourney}" ItemsLayout="VerticalList" HeightRequest="150">
+                    <CollectionView x:Name="ProposedView" ItemsLayout="VerticalList" HeightRequest="150">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout>

@@ -73,6 +73,108 @@ namespace PlatoVoiturage1.Models
             NpgsqlCommand comm = new NpgsqlCommand("INSERT INTO trajet VALUES (" + j.Eid + ", '" + j.AdressDep + "', '" + j.AdresseArr + "', '" + j.Hdep + "', '" + j.Harr + "', " + j.Km + ", " + j.NbPlaces + ");", connection);
 
             NpgsqlCommand comm2 = new NpgsqlCommand("INSERT INTO propose VALUES ('" + userEmail + "', " + j.Eid +");", connection);
+
+            connection.Close();
+        }
+
+
+
+        public static string login(string Email, string Password)
+        {
+            CheckDataBaseConnection();
+            connection.Open();
+            NpgsqlCommand comm = new NpgsqlCommand("SELECT loggin((@email),(@password))",connection);
+            comm.Parameters.AddWithValue("email", Email);
+            comm.Parameters.AddWithValue("password", Password);
+            NpgsqlDataReader result = comm.ExecuteReader();
+            List<string> r = new List<string>();
+
+            while (result.Read())
+            {
+                r.Add(result.GetString(0));
+            }
+            connection.Close();
+            if(r.Count != 1)
+            {
+                throw new FormatException("Plus d'un résultat a été récupéré pour la commande login");
+            }
+            else
+            {
+                return (r[0]);
+            }
+        }
+
+
+
+        public static Client getClient(string Email)
+        {
+            CheckDataBaseConnection();
+            connection.Open();
+            NpgsqlCommand comm = new NpgsqlCommand("SELECT nom, prenom, numtel FROM utilisateur WHERE email=(@email) ",connection);
+            comm.Parameters.AddWithValue("email", Email);
+            NpgsqlDataReader result = comm.ExecuteReader();
+            Client output = null;
+            if (result.HasRows)
+            {
+                result.Read();
+                output = new Client(Email, (string)result["nom"], (string)result["prenom"], (string)result["numtel"]);
+            }
+            connection.Close();
+            return output;
+        }
+
+        public static bool checkIfClientExist(string Email)
+        {
+            bool exists;
+            CheckDataBaseConnection();
+            connection.Open();
+            NpgsqlCommand comm = new NpgsqlCommand("SELECT * FROM utilisateur WHERE email=(@email)",connection);
+            comm.Parameters.AddWithValue("email",Email);
+            NpgsqlDataReader result = comm.ExecuteReader();
+            if (result.HasRows)
+            {
+                exists = true;
+            }
+            else
+            {
+                exists = false;
+            }
+            connection.Close();
+            return (exists);
+        }
+
+        public static bool checkIfPhoneExists(string numtel)
+        {
+            bool exists;
+            CheckDataBaseConnection();
+            connection.Open();
+            NpgsqlCommand comm = new NpgsqlCommand("SELECT * FROM utilisateur WHERE numtel=(@numtel)", connection);
+            comm.Parameters.AddWithValue("numtel", numtel);
+            NpgsqlDataReader result = comm.ExecuteReader();
+            if (result.HasRows)
+            {
+                exists = true;
+            }
+            else
+            {
+                exists = false;
+            }
+            connection.Close();
+            return (exists);
+        }
+
+        public static void addNewUser(string Email, string nom, string prenom, string numtel, string password)
+        {
+            CheckDataBaseConnection();
+            connection.Open();
+            NpgsqlCommand comm = new NpgsqlCommand("CALL insert_data((@email),(@password),(@surname),(@name),(@numtel))", connection);
+            comm.Parameters.AddWithValue("email", Email);
+            comm.Parameters.AddWithValue("password", password);
+            comm.Parameters.AddWithValue("surname", prenom);
+            comm.Parameters.AddWithValue("name", nom);
+            comm.Parameters.AddWithValue("numtel", numtel);
+            comm.ExecuteReader();
+            connection.Close();
         }
     }
 }

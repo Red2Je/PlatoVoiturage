@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using PlatoVoiturage1.Models;
+
 namespace PlatoVoiturage1.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -23,12 +25,13 @@ namespace PlatoVoiturage1.Views
 
         private async void ConfirmInscription(object sender, EventArgs e)
         {
-            bool isInscriptionAllowed = false;
+            bool isInscriptionAllowed = true;
             // /!\/!\/!\/!\/!\/!\ BIEN VERIFIER QUE TOUS LES CHAMPS TEXTES NE SONT PAS NULL SOUS PEINE DE NULLPOINTEREXCEPTION /!\/!\/!\    
-            if (Password.Text == null || PasswordConfirmation.Text == null)
+            if (mail.Text == null || name.Text == null || surname.Text == null || telephone.Text == null || Password.Text == null || PasswordConfirmation.Text == null)
             {
                 FailedPasswordText.Text = "Veuillez renseigner tous les champs";
                 FailedPasswordText.TextColor = Color.Red;
+                isInscriptionAllowed = false;
             }
             else
             {
@@ -36,25 +39,48 @@ namespace PlatoVoiturage1.Views
                 {
                     FailedPasswordText.Text = "Les deux mots de passes que vous avez entrés ne se correspondent pas, veuillez réessayer";
                     FailedPasswordText.TextColor = Color.Red;
+                    isInscriptionAllowed = false;
                 }
                 if (Password.Text.Length == 0)
                 {
                     FailedPasswordText.Text = "Votre mot de passe a une longueur de 0, veuillez rentrer un mot de passe plus long";
+                    FailedPasswordText.TextColor = Color.Red;
+                    isInscriptionAllowed = false;
+                }
+                if (!(mail.Text.Contains("@")))
+                {
+                    FailedPasswordText.Text = "Votre adresse email a un format invalide. (il manque un @)";
+                    FailedPasswordText.TextColor = Color.Red;
+                    isInscriptionAllowed = false;
+                }
+                if (DatabaseInteraction.checkIfClientExist(mail.Text))
+                {
+                    FailedPasswordText.Text = "Votre adresse mail existe déjà dans la base, veuillez en saisir une nouvelle";
+                    FailedPasswordText.TextColor = Color.Red;
+                    isInscriptionAllowed = false;
+                }
+
+                if (telephone.Text.Length != 10)
+                {
+                    FailedPasswordText.Text = "Votre numéro de téléphone ne fait pas 10 chiffres, veuillez réessayer";
+                    FailedPasswordText.TextColor = Color.Red;
+                    isInscriptionAllowed = false;
+                }
+
+                if (DatabaseInteraction.checkIfPhoneExists(telephone.Text))
+                {
+                    FailedPasswordText.Text = "Votre numéro de téléphone existe déjà dans la base, veuillez réessayer";
+                    FailedPasswordText.TextColor = Color.Red;
+                    isInscriptionAllowed = false;
                 }
             }
 
             
 
-            //TODO avec la base de données : 
-            /*
-             * Vérifier que l'adresse mail n'est pas déja dans la base
-             * Vérifier que le Téléphone n'est pas déja dans la base
-             * 
-             */
-
 
             if (isInscriptionAllowed)
             {
+                DatabaseInteraction.addNewUser(mail.Text, name.Text, surname.Text, telephone.Text, Password.Text);
                 await Shell.Current.Navigation.PopAsync(true);
                 await Shell.Current.Navigation.PopAsync(true);
             }
