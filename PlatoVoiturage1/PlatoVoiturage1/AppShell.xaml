@@ -39,17 +39,7 @@
     </FlyoutItem>
 
     <FlyoutItem Title="Proposer un trajet" Icon="proposer_trajet.png">
-        <ShellContent Route="ProposerTrajet">
-            <ShellContent.ContentTemplate>
-                <DataTemplate>
-                    <local:ProposerTrajet>
-                        <x:Arguments>
-                            <local:HomePage/>
-                        </x:Arguments>
-                    </local:ProposerTrajet>
-                </DataTemplate>
-            </ShellContent.ContentTemplate>
-        </ShellContent>
+        <ShellContent Route="ProposerTrajet" ContentTemplate="{DataTemplate local:ProposerTrajet}"/>
     </FlyoutItem>
     
 
