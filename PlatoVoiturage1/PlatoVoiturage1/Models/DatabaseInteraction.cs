@@ -176,5 +176,22 @@ namespace PlatoVoiturage1.Models
             comm.ExecuteReader();
             connection.Close();
         }
+
+        public static bool checkEmailAndPhone(string email, string phoneNumber)
+        {
+            CheckDataBaseConnection();
+            connection.Open();
+            NpgsqlCommand comm = new NpgsqlCommand("SELECT * FROM utilisateur WHERE email=(@email) AND numtel=(@numtel);", connection);
+            comm.Parameters.AddWithValue("email", email);
+            comm.Parameters.AddWithValue("numtel", phoneNumber);
+            NpgsqlDataReader result = comm.ExecuteReader();
+            bool exists = false ;
+            if (result.HasRows)
+            {
+                exists = true;
+            }
+            connection.Close();
+            return (exists);
+        }
     }
 }
