@@ -32,15 +32,26 @@
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
     <FlyoutItem Title="Acceuil" Icon="logo.png">
-        <ShellContent Route="HomePage" ContentTemplate="{DataTemplate local:HomePage}"/>
+        <ShellContent x:Name ="Home" Route="HomePage" ContentTemplate="{DataTemplate local:HomePage}"/>
     </FlyoutItem>
     <FlyoutItem Title="Recherche un trajet" Icon="chercher_trajet.png">
         <ShellContent Route="JourneySearchPage" ContentTemplate="{DataTemplate local:JourneySearchPage}"/>
     </FlyoutItem>
 
     <FlyoutItem Title="Proposer un trajet" Icon="proposer_trajet.png">
-        <ShellContent Route="ProposerTrajet" ContentTemplate="{DataTemplate local:ProposerTrajet}"/>
+        <ShellContent Route="ProposerTrajet">
+            <ShellContent.ContentTemplate>
+                <DataTemplate>
+                    <local:ProposerTrajet>
+                        <x:Arguments>
+                            <local:HomePage/>
+                        </x:Arguments>
+                    </local:ProposerTrajet>
+                </DataTemplate>
+            </ShellContent.ContentTemplate>
+        </ShellContent>
     </FlyoutItem>
+    
 
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
