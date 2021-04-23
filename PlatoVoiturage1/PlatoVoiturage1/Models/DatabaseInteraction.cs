@@ -70,11 +70,26 @@ namespace PlatoVoiturage1.Models
             CheckDataBaseConnection();
             connection.Open();
 
-            NpgsqlCommand comm = new NpgsqlCommand("INSERT INTO trajet VALUES (" + j.Eid + ", '" + j.AdressDep + "', '" + j.AdresseArr + "', '" + j.Hdep + "', '" + j.Harr + "', " + j.Km + ", " + j.NbPlaces + ");", connection);
-
-            NpgsqlCommand comm2 = new NpgsqlCommand("INSERT INTO propose VALUES ('" + userEmail + "', " + j.Eid +");", connection);
-
+            NpgsqlCommand pullData = new NpgsqlCommand("SELECT MAX(eid) FROM trajet;", connection);
+            NpgsqlDataReader result =  pullData.ExecuteReader();
+            if (result.HasRows)
+            {
+                result.Read();
+                j.Eid = result.GetInt32(0) + 1;
+            }else { j.Eid = 1; }
             connection.Close();
+            
+            CheckDataBaseConnection();
+            connection.Open();
+            NpgsqlCommand comm = new NpgsqlCommand("INSERT INTO trajet VALUES (" + j.Eid + ", '" + j.AdressDep + "', '" + j.AdresseArr + "', '" + j.Hdep + "', '" + j.Harr + "', " + j.Km + ", " + j.NbPlaces + ");", connection);
+            comm.ExecuteReader();
+            connection.Close();
+            CheckDataBaseConnection();
+            connection.Open();
+            NpgsqlCommand comm2 = new NpgsqlCommand("INSERT INTO propose VALUES ('" + userEmail + "', " + j.Eid + ");", connection);
+            comm2.ExecuteReader();
+            connection.Close();
+            
         }
 
 
