@@ -19,7 +19,7 @@ namespace PlatoVoiturage1.Models
         {
             if(connection == null)
             {
-                connection = new NpgsqlConnection("Host=91.166.143.227;Port=32769;Username=postgres;Password=platovoiturage;DataBase=postgres");
+                connection = new NpgsqlConnection("Host=92.170.106.48;Port=5432;Username=postgres;Password=platovoiturage;DataBase=postgres;Pooling=false;Timeout=300;CommandTimeout=300");
             }
         }
 
@@ -96,27 +96,40 @@ namespace PlatoVoiturage1.Models
 
         public static string login(string Email, string Password)
         {
-            CheckDataBaseConnection();
-            connection.Open();
-            NpgsqlCommand comm = new NpgsqlCommand("SELECT loggin((@email),(@password))",connection);
-            comm.Parameters.AddWithValue("email", Email);
-            comm.Parameters.AddWithValue("password", Password);
-            NpgsqlDataReader result = comm.ExecuteReader();
-            List<string> r = new List<string>();
+            Console.WriteLine("Email : "+Email);
+            Console.WriteLine("Password : " + Password);
+            try
+            {
+                CheckDataBaseConnection();
+                connection.Open();
+                NpgsqlCommand comm = new NpgsqlCommand("SELECT loggin((@email),(@password))", connection);
+                comm.Parameters.AddWithValue("email", Email);
+                comm.Parameters.AddWithValue("password", Password);
+                NpgsqlDataReader result = comm.ExecuteReader();
+                List<string> r = new List<string>();
 
-            while (result.Read())
+                while (result.Read())
+                {
+                    r.Add(result.GetString(0));
+                }
+                connection.Close();
+                if (r.Count != 1)
+                {
+                    throw new FormatException("Plus d'un résultat a été récupéré pour la commande login");
+                }
+                else
+                {
+                    return (r[0]);
+                }
+            }catch(Exception e)
             {
-                r.Add(result.GetString(0));
+                Console.WriteLine("Nouvelle exception : ");
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine(e.GetType().ToString());
+                throw e;
             }
-            connection.Close();
-            if(r.Count != 1)
-            {
-                throw new FormatException("Plus d'un résultat a été récupéré pour la commande login");
-            }
-            else
-            {
-                return (r[0]);
-            }
+            
         }
 
 
