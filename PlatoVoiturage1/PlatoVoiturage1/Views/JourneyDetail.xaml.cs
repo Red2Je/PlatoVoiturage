@@ -41,9 +41,9 @@ namespace PlatoVoiturage1.Views
 
 
 
-            this.TimeDeparture = DateTime.ParseExact(j.Hdep, "dd/MM/yy/HH/mm", CultureInfo.InvariantCulture);
+            this.TimeDeparture = DateTime.ParseExact(j.Hdep, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
             Hdep = "Heure de départ : " + TimeDeparture.ToString();
-            this.TimeArrival = DateTime.ParseExact(j.Harr, "dd/MM/yy/HH/mm", CultureInfo.InvariantCulture);
+            this.TimeArrival = DateTime.ParseExact(j.Harr, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
             Harr = "Heure d'arrivée : " + TimeArrival.ToString();
             InitializeComponent();
             this.HomePage = homePage;

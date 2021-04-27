@@ -19,7 +19,7 @@ namespace PlatoVoiturage1.Models
         {
             if(connection == null)
             {
-                connection = new NpgsqlConnection("Host=92.170.106.48;Port=5432;Username=postgres;Password=platovoiturage;DataBase=postgres;Pooling=false;Timeout=300;CommandTimeout=300");
+                connection = new NpgsqlConnection("Host=92.170.106.48;Port=5432;Username=postgres;Password=toto;DataBase=postgres;Pooling=false;Timeout=300;CommandTimeout=300");
             }
         }
 

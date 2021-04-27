@@ -37,12 +37,11 @@ namespace PlatoVoiturage1.Views
                 //Removing the first homepage to replace it with the one with a client logged in
                 Shell.Current.Navigation.RemovePage(HomePage);
                 //Adding a page before this one in the navigation stack, logged in.
-                HomePage home = new HomePage(logged, true);
-                EmailSender.Email = Email;
-                EmailSender.HomePage = home;
-                Shell.Current.Navigation.InsertPageBefore(new HomePage(logged, true),this);
+                InfoExchanger.Email = Email;
+                InfoExchanger.IsAuthentified = true;
+                InfoExchanger.User = logged;
                 //Popping the navigation stack to the new page with the user logged in
-                await Shell.Current.Navigation.PopAsync(); 
+                await Shell.Current.Navigation.PopToRootAsync();
             }
             else if(result == "invalid password")
             {
