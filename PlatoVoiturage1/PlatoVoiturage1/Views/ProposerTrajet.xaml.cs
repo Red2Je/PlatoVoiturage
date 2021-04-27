@@ -38,10 +38,12 @@ namespace PlatoVoiturage1.Views
             
             try
             {
-                DatabaseInteraction.proposeNewJourney(EmailSender.Email, j);
+                //DatabaseInteraction.proposeNewJourney(EmailSender.Email, j);
                 await DisplayAlert("Trajet ajouté", "Votre trajet a bien été pris en compte", "OK");
+                depAd.Text = ""; arrAd.Text = ""; DepartureTime.Time = DateTime.Now.TimeOfDay; pasNum.Text = "0"; comm.Text = "";
+                dog.BackgroundColor = Color.Green; smoke.BackgroundColor = Color.Green; music.BackgroundColor = Color.Green; talk.BackgroundColor = Color.Green;
             }
-            catch(Exception ex) { await DisplayAlert("Connexion requise!", "yo connecte toi on a dit", "OK"); Console.WriteLine("BRUH" + ex.Message); }
+            catch(Exception ex) { await DisplayAlert("Erreur de traitement", "Une erreur est survenue pendant le traitement de votre requête. Vérifiez que vous soyez connecté.", "OK"); }
             
 
         }
