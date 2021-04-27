@@ -6,10 +6,11 @@ using Xamarin.Forms;
 
 namespace PlatoVoiturage1.Models
 {
-    public static class EmailSender
+    public static class InfoExchanger
     {
         public static string Email { get; set; }
-        public static HomePage HomePage { get; set; }
+        public static bool IsAuthentified { get; set; }
+        public static Client User { get; set; }
 
     }
 }
