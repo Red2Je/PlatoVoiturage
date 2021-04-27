@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 using Npgsql;
 
@@ -221,5 +222,64 @@ namespace PlatoVoiturage1.Models
             connection.Close();
             return (exists);
         }
+        public static List<Journey> SearchJourney(string startingCity, string targettedCity, int startingDate, int targettedDate)
+        {
+            CheckDataBaseConnection();
+            connection.Open();
+
+            NpgsqlCommand comm = new NpgsqlCommand("SELECT rechercheTrajet((@villeDepe), (@villeArre), (@hdepe), (@harre))", connection);
+            comm.Parameters.AddWithValue("%villeDepe%", startingCity);
+            comm.Parameters.AddWithValue("%villeArre%", targettedCity);
+            comm.Parameters.AddWithValue("hdepe", startingDate);
+            comm.Parameters.AddWithValue("harre", targettedDate);
+            NpgsqlDataReader result = comm.ExecuteReader();
+            Dictionary<Journey, double> journeys = new Dictionary<Journey, double>();
+
+            List<Journey> temp = new List<Journey>();
+            while (result.Read())
+            {
+                temp.Add(new Journey((int)result["eid"], (string)result["adresseDep"], (string)result["adresseArr"], (string)result["hdep"], (string)result["harr"], (int)result["km"], (int)result["nbPlaces"]));
+            }
+
+            connection.Close();
+
+            foreach (Journey j in temp)
+            {
+                CheckDataBaseConnection();
+                connection.Open();
+                NpgsqlCommand comm2 = new NpgsqlCommand("SELECT distance((@ville1), (@ville2))", connection);
+                comm2.Parameters.AddWithValue("%ville1%", startingCity);
+                comm2.Parameters.AddWithValue("%ville2%", j.AdressDep);
+                NpgsqlDataReader distanceDep = comm2.ExecuteReader();
+                distanceDep.Read();
+                int distanceDepe = distanceDep.GetInt32(0);
+                connection.Close();
+
+                CheckDataBaseConnection();
+                connection.Open();
+                NpgsqlCommand comm3 = new NpgsqlCommand("SELECT distance((@ville1), (@ville2))", connection);
+                comm3.Parameters.AddWithValue("%ville1%", targettedCity);
+                comm3.Parameters.AddWithValue("%ville2%", j.AdresseArr);
+                NpgsqlDataReader distanceArr = comm3.ExecuteReader();
+                distanceArr.Read();
+                int distanceArre = distanceArr.GetInt32(0);
+                connection.Close();
+
+                //journeys[j] = Math.Exp(Math.Abs(startingDate - j.Hdep) / 180) + Math.Exp(Math.Abs(targettedDate - j.Harr) / 180) + Math.Exp(distanceDepe) + Math.Exp(distanceArre);
+                journeys[j] = Math.Exp(distanceDepe) + Math.Exp(distanceArre);
+            }
+
+            List<Journey> searchResult = new List<Journey>();
+            foreach (KeyValuePair<Journey, double> pair in journeys.OrderBy(key => key.Value))
+            {
+                searchResult.Add(pair.Key);
+            }
+            return searchResult;
+        }
+
     }
+
+
+
+
 }
