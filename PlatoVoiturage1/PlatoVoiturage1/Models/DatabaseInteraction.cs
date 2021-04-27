@@ -277,6 +277,19 @@ namespace PlatoVoiturage1.Models
             return searchResult;
         }
 
+
+        public static void changePassword(string Email, string password)
+        {
+            CheckDataBaseConnection();
+            connection.Open();
+            NpgsqlCommand comm = new NpgsqlCommand("CALL reinit_password((@email),(@password))", connection);
+            comm.Parameters.AddWithValue("email", Email);
+            comm.Parameters.AddWithValue("password", password);
+            comm.ExecuteReader();
+            connection.Close();
+
+        }
+
     }
 
 
