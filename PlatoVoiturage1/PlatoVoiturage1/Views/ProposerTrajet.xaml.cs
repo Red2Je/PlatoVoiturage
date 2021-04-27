@@ -19,11 +19,16 @@ namespace PlatoVoiturage1.Views
         {
             InitializeComponent();
             DepartureTime.Time = DateTime.Now.TimeOfDay;
-
+            DepartureDate.MinimumDate = DateTime.Now.Date;
+            ArrTime.Time = DateTime.Now.TimeOfDay;
+            ArrDate.MinimumDate = DepartureDate.Date; //à revoir
         }
 
         private async void Valider(object sender, EventArgs e)
         {
+            string dateDep = DepartureDate.Date.Year.ToString() + "-" + DepartureDate.Date.Month.ToString() + "-" + DepartureDate.Date.Day.ToString() + " ";
+            string dateArr = ArrDate.Date.Year.ToString() + "-" + ArrDate.Date.Month.ToString() + "-" + ArrDate.Date.Day.ToString() + " ";
+
             int passengers = 0;
             try
             {
@@ -33,12 +38,23 @@ namespace PlatoVoiturage1.Views
             {
                 passengers = 0;
             }
-            Journey j = new Journey(0, depAd.Text, arrAd.Text, DepartureTime.Time.ToString(), "LESSGO", 69, passengers);
 
+            int km = 0;
+            try
+            {
+                km = int.Parse(disNum.Text);
+            }
+            catch
+            {
+                km = 0;
+            }
+
+            Journey j = new Journey(0, depAd.Text, arrAd.Text, dateDep + DepartureTime.Time.ToString(), dateArr + ArrTime.Time.ToString(), km, passengers, comm.Text, dog.BackgroundColor == Color.Green, smoke.BackgroundColor == Color.Green, music.BackgroundColor == Color.Green, talk.BackgroundColor == Color.Green);
+            
             
             try
             {
-                //DatabaseInteraction.proposeNewJourney(EmailSender.Email, j);
+                DatabaseInteraction.proposeNewJourney(InfoExchanger.Email, j);
                 await DisplayAlert("Trajet ajouté", "Votre trajet a bien été pris en compte", "OK");
                 depAd.Text = ""; arrAd.Text = ""; DepartureTime.Time = DateTime.Now.TimeOfDay; pasNum.Text = "0"; comm.Text = "";
                 dog.BackgroundColor = Color.Green; smoke.BackgroundColor = Color.Green; music.BackgroundColor = Color.Green; talk.BackgroundColor = Color.Green;
