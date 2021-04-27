@@ -27,19 +27,17 @@ namespace PlatoVoiturage1.Views
 
         private async void ConfirmPasswordReset(object sender, EventArgs e)
         {
-            //TODO :
-            //Vérifier que les informations, à part le mot de passe, sont bien coéhrentes
-            //Changer le mot de passe dans la base de donnée
 
             string Email = mail.Text;
             string numtel = telephone.Text;
 
-            bool canReset = false;
+            bool canReset = true;
             // /!\/!\/!\/!\/!\/!\ BIEN VERIFIER QUE TOUS LES CHAMPS TEXTES NE SONT PAS NULL SOUS PEINE DE NULLPOINTEREXCEPTION /!\/!\/!\    
             if (NewPassword.Text == null || NewPasswordConfirmation == null || mail == null || telephone == null)
             {
                 IncorrectPasswordText.Text = "Veuillez renseigner tous les champs";
                 IncorrectPasswordText.TextColor = Color.Red;
+                canReset = false;
             }
             else
             {
@@ -47,11 +45,13 @@ namespace PlatoVoiturage1.Views
                 { 
                     IncorrectPasswordText.Text = "Les deux mots de passes que vous avez entrés ne se correspondent pas, veuillez réessayer";
                     IncorrectPasswordText.TextColor = Color.Red;
+                    canReset = false;
                 }
                 if (NewPassword.Text.Length == 0)
                 {
                     IncorrectPasswordText.Text = "Votre mot de passe a une longueur de 0, veuillez rentrer un mot de passe plus long";
                     IncorrectPasswordText.TextColor = Color.Red;
+                    canReset = false;
                 }
 
                 if (!(mail.Text.Contains("@")))
@@ -60,23 +60,10 @@ namespace PlatoVoiturage1.Views
                     IncorrectPasswordText.TextColor = Color.Red;
                     canReset = false;
                 }
-                if (DatabaseInteraction.checkIfClientExist(mail.Text))
-                {
-                    IncorrectPasswordText.Text = "Votre adresse mail existe déjà dans la base, veuillez en saisir une nouvelle";
-                    IncorrectPasswordText.TextColor = Color.Red;
-                    canReset = false;
-                }
 
                 if (telephone.Text.Length != 10)
                 {
                     IncorrectPasswordText.Text = "Votre numéro de téléphone ne fait pas 10 chiffres, veuillez réessayer";
-                    IncorrectPasswordText.TextColor = Color.Red;
-                    canReset = false;
-                }
-
-                if (DatabaseInteraction.checkIfPhoneExists(telephone.Text))
-                {
-                    IncorrectPasswordText.Text = "Votre numéro de téléphone existe déjà dans la base, veuillez réessayer";
                     IncorrectPasswordText.TextColor = Color.Red;
                     canReset = false;
                 }
@@ -89,9 +76,9 @@ namespace PlatoVoiturage1.Views
                 }
 
             }
-            //Une fois que la transaction a été faite avec la base de donnée, mettre la variable can reset à true
             if (canReset)
             {
+                DatabaseInteraction.changePassword(Email, NewPassword.Text);
                 await DisplayAlert("Réinitialisation du mot de passe", "Votre mot de passe a bien été changé", "OK");
                 await Shell.Current.Navigation.PopAsync();
             }
