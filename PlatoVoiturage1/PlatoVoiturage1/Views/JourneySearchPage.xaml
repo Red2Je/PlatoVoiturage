@@ -27,18 +27,17 @@
                     </Frame>
                     <Button Text="Rechercher" BackgroundColor="{StaticResource Primary}" CornerRadius="25"/>
                     <Frame BorderColor="Gray" CornerRadius="25" Margin="0,50,0,0" HeightRequest="200">
-                        <!-- TODO Complete this part to add the list of the current user's journey
-                    <CollectionView ItemsSource="{Binding}" ItemsLayout="VerticalList" BackgroundColor="Black">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <ScrollView>
-                                    <StackLayout>
-                                    
-                                    </StackLayout>
-                                </ScrollView>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>-->
+                        <CollectionView x:Name="ResearchDisplay" ItemsLayout="VerticalList" BackgroundColor="Black">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <ScrollView>
+                                        <StackLayout>
+
+                                        </StackLayout>
+                                    </ScrollView>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
                     </Frame>
 
                 </StackLayout>

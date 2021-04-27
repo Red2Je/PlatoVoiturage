@@ -27,13 +27,11 @@ namespace PlatoVoiturage1.Views
         public bool IsRefreshing
         {
             get {
-                Console.WriteLine("Get is refreshing value : " + isRefreshing);
                 return isRefreshing;
             }
             set
             {
                 isRefreshing = value;
-                Console.WriteLine("Set is refreshing value to : " + isRefreshing);
                 OnPropertyChanged();
             }
 

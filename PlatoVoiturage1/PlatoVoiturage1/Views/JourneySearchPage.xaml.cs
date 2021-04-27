@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using PlatoVoiturage1.Models;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,6 +14,7 @@ namespace PlatoVoiturage1.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class JourneySearchPage : ContentPage
     {
+        public IList<Journey> Result { get; set; }
         public JourneySearchPage()
         {
             InitializeComponent();

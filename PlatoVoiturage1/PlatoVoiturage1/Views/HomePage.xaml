@@ -5,91 +5,84 @@
              Title="Home page"
              Shell.NavBarIsVisible="False">
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout Orientation="Horizontal" HeightRequest="50" Margin="0,0,10,0">
+        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+            <ScrollView>
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal" HeightRequest="50" Margin="0,0,10,0">
 
-                <Frame BorderColor="{StaticResource Primary}" BackgroundColor="{StaticResource Primary}" CornerRadius="50" Padding="5,0,5,0" Grid.Row="0" Grid.Column="0" WidthRequest="50">
-                    <ImageButton Source="burger_white.png" Grid.Row="0" Grid.Column="0" WidthRequest="50"  HeightRequest="50" BackgroundColor="{StaticResource Primary}" HorizontalOptions="StartAndExpand" Clicked="ImageButton_Clicked" />
-                </Frame>
-                <Button x:Name="ConnectionButton" Grid.Column="2" Grid.Row="0" Text ="Connexion" Clicked="GoToLoginPage" HorizontalOptions="EndAndExpand"/>
-                
-            </StackLayout>
-            <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" Margin="20,100,20,0" BackgroundColor="{StaticResource Primary}">
-                <Label Text="Vos trajets à venir" HorizontalOptions="Center" FontSize="25" TextColor="White"/>
-            </Frame>
-            <Frame BorderColor="Gray" CornerRadius="25" Margin="20,0,20,0" HeightRequest="150">
-                <!-- TODO Complete this part to add the list of the current user's journey-->
-                <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
-                    <ScrollView VerticalScrollBarVisibility="Always">
-                        <CollectionView x:Name ="ReservedView" ItemsLayout="VerticalList" HeightRequest="150">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <StackLayout>
-                                        <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" Padding ="5,5,15,5" Margin="0,5,0,5" >
-                                            <StackLayout Orientation="Horizontal" HeightRequest="50">
-                                                <Image Source="proposer_trajet.png"/>
-                                                <Label Text="{Binding TransformedJourney}" VerticalTextAlignment="Center" TextColor="Black"/>
-                                                <ImageButton Source="arrowRight.png" HorizontalOptions="EndAndExpand" Clicked="GiveDetails" BackgroundColor="White"/>
-                                            </StackLayout>
-                                        
-                                        </Frame>
-                                        
-                                    </StackLayout>
-                                
+                        <Frame BorderColor="{StaticResource Primary}" BackgroundColor="{StaticResource Primary}" CornerRadius="50" Padding="5,0,5,0" Grid.Row="0" Grid.Column="0" WidthRequest="50">
+                            <ImageButton Source="burger_white.png" Grid.Row="0" Grid.Column="0" WidthRequest="50"  HeightRequest="50" BackgroundColor="{StaticResource Primary}" HorizontalOptions="StartAndExpand" Clicked="ImageButton_Clicked" />
+                        </Frame>
+                        <Button x:Name="ConnectionButton" Grid.Column="2" Grid.Row="0" Text ="Connexion" Clicked="GoToLoginPage" HorizontalOptions="EndAndExpand"/>
 
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                            <CollectionView.EmptyView>
-                                <ContentView BackgroundColor="LightGray">
-                                    <StackLayout HorizontalOptions="CenterAndExpand"
-                                                 VerticalOptions="CenterAndExpand">
-                                        <Label Text="Aucun trajet à afficher" HorizontalTextAlignment="Center" TextColor="Black"/>
-                                        <Label Text="Veuillez vous connecter" HorizontalTextAlignment="Center" TextColor="Black"/>
-                                    </StackLayout>
-                                </ContentView>
-                            </CollectionView.EmptyView>
-                        </CollectionView>
-                    </ScrollView>
-                </RefreshView>
-            </Frame>
-            <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" Margin="20,25,20,0" BackgroundColor="{StaticResource Primary}">
-                <Label Text="Vos propositions de trajets" HorizontalOptions="Center" FontSize="25" TextColor="White"/>
-            </Frame>
-            <Frame BorderColor="Gray" CornerRadius="25" Margin="20,0,20,0" HeightRequest="150">
-                <!-- TODO Complete this part to add the list of the current user's journey-->
-                <ScrollView VerticalScrollBarVisibility="Always">
-                    <CollectionView x:Name="ProposedView" ItemsLayout="VerticalList" HeightRequest="150">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout>
-                                    <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" Padding ="5" Margin="0,5,0,5">
-                                        <StackLayout Orientation="Horizontal" HeightRequest="50">
-                                            <Image Source="proposer_trajet.png"/>
-                                            <Label Text="{Binding TransformedJourney}" VerticalTextAlignment="Center" TextColor="Black"/>
+                    </StackLayout>
+                    <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" Margin="20,100,20,0" BackgroundColor="{StaticResource Primary}">
+                        <Label Text="Vos trajets à venir" HorizontalOptions="Center" FontSize="25" TextColor="White"/>
+                    </Frame>
+                    <Frame BorderColor="Gray" CornerRadius="25" Margin="20,0,20,0" HeightRequest="150">
+                        <ScrollView VerticalScrollBarVisibility="Always">
+                            <CollectionView x:Name ="ReservedView" ItemsLayout="VerticalList" HeightRequest="150">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout>
+                                            <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" Padding ="5,5,15,5" Margin="0,5,0,5" >
+                                                <StackLayout Orientation="Horizontal" HeightRequest="50">
+                                                    <Image Source="proposer_trajet.png"/>
+                                                    <Label Text="{Binding TransformedJourney}" VerticalTextAlignment="Center" TextColor="Black"/>
+                                                    <ImageButton Source="arrowRight.png" HorizontalOptions="EndAndExpand" Clicked="GiveDetails" BackgroundColor="White"/>
+                                                </StackLayout>
+
+                                            </Frame>
+
                                         </StackLayout>
-                                        
-                                    </Frame>
-
-                                </StackLayout>
 
 
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                        <CollectionView.EmptyView>
-                            <ContentView BackgroundColor="LightGray">
-                                <StackLayout HorizontalOptions="CenterAndExpand"
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                                <CollectionView.EmptyView>
+                                    <ContentView BackgroundColor="LightGray">
+                                        <StackLayout HorizontalOptions="CenterAndExpand"
+                                                 VerticalOptions="CenterAndExpand">
+                                            <Label Text="Aucun trajet à afficher" HorizontalTextAlignment="Center" TextColor="Black"/>
+                                            <Label Text="Veuillez vous connecter" HorizontalTextAlignment="Center" TextColor="Black"/>
+                                        </StackLayout>
+                                    </ContentView>
+                                </CollectionView.EmptyView>
+                            </CollectionView>
+                        </ScrollView>
+                    </Frame>
+                    <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" Margin="20,25,20,0" BackgroundColor="{StaticResource Primary}">
+                        <Label Text="Vos propositions de trajets" HorizontalOptions="Center" FontSize="25" TextColor="White"/>
+                    </Frame>
+                    <Frame BorderColor="Gray" CornerRadius="25" Margin="20,0,20,0" HeightRequest="150">
+                        <ScrollView VerticalScrollBarVisibility="Always">
+                            <CollectionView x:Name="ProposedView" ItemsLayout="VerticalList" HeightRequest="150">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout>
+                                            <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" Padding ="5" Margin="0,5,0,5">
+                                                <StackLayout Orientation="Horizontal" HeightRequest="50">
+                                                    <Image Source="proposer_trajet.png"/>
+                                                    <Label Text="{Binding TransformedJourney}" VerticalTextAlignment="Center" TextColor="Black"/>
+                                                </StackLayout>
+                                            </Frame>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                                <CollectionView.EmptyView>
+                                    <ContentView BackgroundColor="LightGray">
+                                        <StackLayout HorizontalOptions="CenterAndExpand"
                                              VerticalOptions="CenterAndExpand">
-                                    <Label Text="Aucun trajet à afficher" HorizontalTextAlignment="Center" TextColor="Black"/>
-                                    <Label Text="Veuillez vous connecter" HorizontalTextAlignment="Center" TextColor="Black"/>
-                                </StackLayout>
-                            </ContentView>
-                        </CollectionView.EmptyView>
-                    </CollectionView>
-                </ScrollView>
-            </Frame>
-
-
-
-        </StackLayout>
+                                            <Label Text="Aucun trajet à afficher" HorizontalTextAlignment="Center" TextColor="Black"/>
+                                            <Label Text="Veuillez vous connecter" HorizontalTextAlignment="Center" TextColor="Black"/>
+                                        </StackLayout>
+                                    </ContentView>
+                                </CollectionView.EmptyView>
+                            </CollectionView>
+                        </ScrollView>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+        </RefreshView>
     </ContentPage.Content>
 </ContentPage>
