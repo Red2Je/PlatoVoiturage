@@ -14,10 +14,16 @@
                         <Label Text="Recherche de trajet" FontSize="25" HorizontalOptions="Center" TextColor="White"/>
                     </Frame>
                     <Frame BorderColor="Gray" CornerRadius="25" Padding="20,0,20,0">
-                        <Entry IsTextPredictionEnabled="False" TextColor="Black" Placeholder="Adresse de départ" PlaceholderColor="Gray"/>
+                        <Entry x:Name="AddDep" IsTextPredictionEnabled="False" TextColor="Black" Placeholder="Adresse de départ" PlaceholderColor="Gray"/>
                     </Frame>
                     <Frame BorderColor="Gray" CornerRadius="25" Padding="20,0,20,0">
-                        <Entry IsTextPredictionEnabled="False" TextColor="Black" Placeholder="Adresse d'arrivée" PlaceholderColor="Gray"/>
+                        <Entry x:Name="AddArr" IsTextPredictionEnabled="False" TextColor="Black" Placeholder="Adresse d'arrivée" PlaceholderColor="Gray"/>
+                    </Frame>
+                    <Frame BackgroundColor="{StaticResource Primary}" CornerRadius="25" Padding="0,10,0,10">
+                        <Label Text="Jour de départ" FontSize="17" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White"/>
+                    </Frame>
+                    <Frame BorderColor="Gray" CornerRadius="25" Padding="20,0,20,0">
+                        <DatePicker x:Name="DepartureDay" TextColor="Black"/>
                     </Frame>
                     <Frame BackgroundColor="{StaticResource Primary}" CornerRadius="25" Padding="0,10,0,10">
                         <Label Text="Heure de départ" FontSize="17" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White"/>
@@ -25,18 +31,45 @@
                     <Frame BorderColor="Gray" CornerRadius="25" Padding="20,0,20,0">
                         <TimePicker x:Name="DepartureTime" TextColor="Black"/>
                     </Frame>
-                    <Button Text="Rechercher" BackgroundColor="{StaticResource Primary}" CornerRadius="25"/>
+                    <Frame BackgroundColor="{StaticResource Primary}" CornerRadius="25" Padding="0,10,0,10">
+                        <Label Text="Jour d'arrivée" FontSize="17" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White"/>
+                    </Frame>
+                    <Frame BorderColor="Gray" CornerRadius="25" Padding="20,0,20,0">
+                        <DatePicker x:Name="ArrivalDay" TextColor="Black"/>
+                    </Frame>
+                    <Frame BackgroundColor="{StaticResource Primary}" CornerRadius="25" Padding="0,10,0,10">
+                        <Label Text="Heure d'arrivée" FontSize="17" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White"/>
+                    </Frame>
+                    <Frame BorderColor="Gray" CornerRadius="25" Padding="20,0,20,0">
+                        <TimePicker x:Name="ArrivalTime" TextColor="Black"/>
+                    </Frame>
+                    <Button Text="Rechercher" BackgroundColor="{StaticResource Primary}" CornerRadius="25" Clicked="Validate"/>
+                    <Label x:Name="Error" TextColor="Red" HorizontalTextAlignment="Center"/>
                     <Frame BorderColor="Gray" CornerRadius="25" Margin="0,50,0,0" HeightRequest="200">
-                        <CollectionView x:Name="ResearchDisplay" ItemsLayout="VerticalList" BackgroundColor="Black">
+                        <CollectionView x:Name="ResearchDisplay" ItemsLayout="VerticalList" BackgroundColor="White">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <ScrollView>
                                         <StackLayout>
-
+                                            <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" Padding ="5" Margin="0,5,0,5">
+                                                <StackLayout Orientation="Horizontal" HeightRequest="50">
+                                                    <Image Source="proposer_trajet.png"/>
+                                                    <Label Text="{Binding TransformedJourney}" VerticalTextAlignment="Center" TextColor="Black"/>
+                                                    <ImageButton Source="arrowRight.png" HorizontalOptions="EndAndExpand" Clicked="GiveDetails" BackgroundColor="White"/>
+                                                </StackLayout>
+                                            </Frame>
                                         </StackLayout>
                                     </ScrollView>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
+                            <CollectionView.EmptyView>
+                                <ContentView BackgroundColor="LightGray">
+                                    <StackLayout HorizontalOptions="CenterAndExpand"
+                                             VerticalOptions="CenterAndExpand">
+                                        <Label Text="Faite une recherche pour avoir des résultats" HorizontalTextAlignment="Center" TextColor="Black"/>
+                                    </StackLayout>
+                                </ContentView>
+                            </CollectionView.EmptyView>
                         </CollectionView>
                     </Frame>
 

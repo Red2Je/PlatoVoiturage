@@ -60,10 +60,11 @@
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <StackLayout>
-                                            <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" Padding ="5" Margin="0,5,0,5">
+                                            <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" Padding ="5,5,15,5" Margin="0,5,0,5">
                                                 <StackLayout Orientation="Horizontal" HeightRequest="50">
                                                     <Image Source="proposer_trajet.png"/>
                                                     <Label Text="{Binding TransformedJourney}" VerticalTextAlignment="Center" TextColor="Black"/>
+                                                    <ImageButton Source="arrowRight.png" HorizontalOptions="EndAndExpand" Clicked="GiveDetails" BackgroundColor="White"/>
                                                 </StackLayout>
                                             </Frame>
                                         </StackLayout>
