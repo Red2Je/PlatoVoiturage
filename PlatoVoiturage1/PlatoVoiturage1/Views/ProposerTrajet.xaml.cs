@@ -30,7 +30,7 @@ namespace PlatoVoiturage1.Views
                 passengers = int.Parse(pasNum.Text);
             }
             catch
-            {
+            { 
                 passengers = 0;
             }
             Journey j = new Journey(0, depAd.Text, arrAd.Text, DepartureTime.Time.ToString(), "LESSGO", 69, passengers);

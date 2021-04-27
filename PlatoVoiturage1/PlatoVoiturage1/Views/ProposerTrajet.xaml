@@ -102,7 +102,7 @@
                             <ImageButton x:Name="music" Source="music.png" HeightRequest="50" BackgroundColor="Green" Clicked="ChangeColor"/>
                         </Frame>
                     </StackLayout>
-                    <StackLayout HeightRequest="100">
+                    <StackLayout HeightRequest="100"> 
                         <Label Text="Conversation" TextColor="Black" HorizontalOptions="Center"/>
                         <Frame BorderColor="Gray" Padding="0,0,0,0">
                             <ImageButton x:Name="talk" Source="conversation.png" HeightRequest="50" BackgroundColor="Green" Clicked="ChangeColor"/>

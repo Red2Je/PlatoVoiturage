@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Windows.Input; 
 
 
 namespace PlatoVoiturage1.Views
@@ -17,9 +19,26 @@ namespace PlatoVoiturage1.Views
 
         public static IList<Journey> ReservedJourney { get; private set; }
         public static IList<Journey> ProposedJourney { get; private set; }
-        public bool IsAuthentified = false;
         public Client Client { get; set; }
-        
+
+        public ICommand RefreshCommand => new Command(refreshPage);
+
+        bool isRefreshing;
+        public bool IsRefreshing
+        {
+            get {
+                Console.WriteLine("Get is refreshing value : " + isRefreshing);
+                return isRefreshing;
+            }
+            set
+            {
+                isRefreshing = value;
+                Console.WriteLine("Set is refreshing value to : " + isRefreshing);
+                OnPropertyChanged();
+            }
+
+        }
+
         public HomePage()
         {
             
@@ -27,36 +46,86 @@ namespace PlatoVoiturage1.Views
             BindingContext = this;
             ReservedJourney = new List<Journey>();
             ProposedJourney = new List<Journey>();
+            ReservedView.SetBinding(CollectionView.ItemsSourceProperty, nameof(ReservedJourney));
+            ProposedView.SetBinding(CollectionView.ItemsSourceProperty, nameof(ProposedJourney));
+            ReservedView.ItemsSource = ReservedJourney;
+            ProposedView.ItemsSource = ProposedJourney;
+
+            if (InfoExchanger.IsAuthentified)
+            {
+                this.Client = InfoExchanger.User;
+                ConnectionButton.Text = "Se Déconnecter";
+                ConnectionButton.Clicked -= GoToLoginPage;
+                ConnectionButton.Clicked += Disconnect;
+
+            }
+
+
+
             displayJourney();
         }
 
-        public HomePage(Client c, bool isAuthentified)
+        protected override void OnAppearing()
         {
-            InitializeComponent();
-            BindingContext = this;
-            this.Client = c;
-            this.IsAuthentified = isAuthentified;
+            IsRefreshing = false;
+            ReservedJourney = new List<Journey>();
+            ProposedJourney = new List<Journey>();
+
+            if (InfoExchanger.IsAuthentified)
+            {
+                this.Client = InfoExchanger.User;
+                ConnectionButton.Text = "Se Déconnecter";
+                ConnectionButton.Clicked -= GoToLoginPage;
+                ConnectionButton.Clicked += Disconnect;
+
+            }
+
+
             displayJourney();
-            ConnectionButton.Text = "Se Déconnecter";
-            ConnectionButton.Clicked -= GoToLoginPage;
-            ConnectionButton.Clicked += Disconnect;
+            base.OnAppearing();
         }
+
+
+
 
         private void displayJourney()
         {
-            ReservedJourney.Clear();
-            ProposedJourney.Clear();
+            ReservedJourney = new List<Journey>();
+            ProposedJourney = new List<Journey>();
 
-            if (IsAuthentified)
+
+            if (InfoExchanger.IsAuthentified)
             {
-                Console.WriteLine("Actualising");
                 ReservedJourney = DatabaseInteraction.GetReservedJourneyList(Client.Email);
                 ProposedJourney = DatabaseInteraction.GetProposedJourneyList(Client.Email);
-                ReservedView.ItemsSource = ReservedJourney;
-                ProposedView.ItemsSource = ProposedJourney;
             }
+
+            ReservedView.ItemsSource = ReservedJourney;
+            ProposedView.ItemsSource = ProposedJourney;
         }
 
+        void refreshPage()
+        {
+            IsRefreshing = true;
+            displayJourney();
+            if (InfoExchanger.IsAuthentified)
+            {
+                this.Client = InfoExchanger.User;
+                ConnectionButton.Text = "Se Déconnecter";
+                ConnectionButton.Clicked -= GoToLoginPage;
+                ConnectionButton.Clicked += Disconnect;
+
+            }
+            else
+            {
+                ConnectionButton.Text = "Connexion";
+                ConnectionButton.Clicked -= Disconnect;
+                ConnectionButton.Clicked += GoToLoginPage;
+            }
+
+            IsRefreshing = false;
+
+        }
 
         private void ImageButton_Clicked(object sender, EventArgs e)
         {
@@ -71,10 +140,13 @@ namespace PlatoVoiturage1.Views
             await Shell.Current.Navigation.PushAsync(new LoginPage(this));
         }
 
-        private async void Disconnect(object sender, EventArgs e)
+        private void Disconnect(object sender, EventArgs e)
         {
-            Navigation.InsertPageBefore(new HomePage(),this);
-            await Navigation.PopToRootAsync();
+            InfoExchanger.Email = null;
+            InfoExchanger.IsAuthentified = false;
+            InfoExchanger.User = null;
+            
+            RefreshCommand.Execute(null);
         }
 
         private async void GiveDetails(object sender, EventArgs e)
