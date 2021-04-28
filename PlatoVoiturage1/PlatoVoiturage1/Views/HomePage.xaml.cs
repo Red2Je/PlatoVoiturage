@@ -21,19 +21,17 @@ namespace PlatoVoiturage1.Views
         public static IList<Journey> ProposedJourney { get; private set; }
         public Client Client { get; set; }
 
-        public ICommand RefreshCommand => new Command(refreshPage);
+        public ICommand RefreshCommand => new Command(RefreshPage);
 
         bool isRefreshing;
         public bool IsRefreshing
         {
             get {
-                Console.WriteLine("Get is refreshing value : " + isRefreshing);
                 return isRefreshing;
             }
             set
             {
                 isRefreshing = value;
-                Console.WriteLine("Set is refreshing value to : " + isRefreshing);
                 OnPropertyChanged();
             }
 
@@ -62,7 +60,7 @@ namespace PlatoVoiturage1.Views
 
 
 
-            displayJourney();
+            DisplayJourney();
         }
 
         protected override void OnAppearing()
@@ -81,14 +79,14 @@ namespace PlatoVoiturage1.Views
             }
 
 
-            displayJourney();
+            DisplayJourney();
             base.OnAppearing();
         }
 
 
 
 
-        private void displayJourney()
+        private void DisplayJourney()
         {
             ReservedJourney = new List<Journey>();
             ProposedJourney = new List<Journey>();
@@ -104,10 +102,10 @@ namespace PlatoVoiturage1.Views
             ProposedView.ItemsSource = ProposedJourney;
         }
 
-        void refreshPage()
+        void RefreshPage()
         {
             IsRefreshing = true;
-            displayJourney();
+            DisplayJourney();
             if (InfoExchanger.IsAuthentified)
             {
                 this.Client = InfoExchanger.User;

@@ -30,10 +30,10 @@ namespace PlatoVoiturage1.Views
         {
             Email = Em.Text;
             Password = Pw.Text;
-            string result = DatabaseInteraction.login(Email, Password);
+            string result = DatabaseInteraction.Login(Email, Password);
             if(result == "logged in")
             {
-                Client logged = DatabaseInteraction.getClient(Email);
+                Client logged = DatabaseInteraction.GetClient(Email);
                 //Removing the first homepage to replace it with the one with a client logged in
                 Shell.Current.Navigation.RemovePage(HomePage);
                 //Adding a page before this one in the navigation stack, logged in.

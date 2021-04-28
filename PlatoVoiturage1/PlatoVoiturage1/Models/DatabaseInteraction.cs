@@ -4,6 +4,7 @@ using System.Text;
 using System.Linq;
 
 using Npgsql;
+using System.Globalization;
 
 namespace PlatoVoiturage1.Models
 {
@@ -95,7 +96,7 @@ namespace PlatoVoiturage1.Models
 
 
 
-        public static string login(string Email, string Password)
+        public static string Login(string Email, string Password)
         {
             Console.WriteLine("Email : "+Email);
             Console.WriteLine("Password : " + Password);
@@ -135,7 +136,7 @@ namespace PlatoVoiturage1.Models
 
 
 
-        public static Client getClient(string Email)
+        public static Client GetClient(string Email)
         {
             CheckDataBaseConnection();
             connection.Open();
@@ -152,7 +153,7 @@ namespace PlatoVoiturage1.Models
             return output;
         }
 
-        public static bool checkIfClientExist(string Email)
+        public static bool CheckIfClientExist(string Email)
         {
             bool exists;
             CheckDataBaseConnection();
@@ -172,7 +173,7 @@ namespace PlatoVoiturage1.Models
             return (exists);
         }
 
-        public static bool checkIfPhoneExists(string numtel)
+        public static bool CheckIfPhoneExists(string numtel)
         {
             bool exists;
             CheckDataBaseConnection();
@@ -192,7 +193,7 @@ namespace PlatoVoiturage1.Models
             return (exists);
         }
 
-        public static void addNewUser(string Email, string nom, string prenom, string numtel, string password)
+        public static void AddNewUser(string Email, string nom, string prenom, string numtel, string password)
         {
             CheckDataBaseConnection();
             connection.Open();
@@ -206,7 +207,7 @@ namespace PlatoVoiturage1.Models
             connection.Close();
         }
 
-        public static bool checkEmailAndPhone(string email, string phoneNumber)
+        public static bool CheckEmailAndPhone(string email, string phoneNumber)
         {
             CheckDataBaseConnection();
             connection.Open();
@@ -222,7 +223,15 @@ namespace PlatoVoiturage1.Models
             connection.Close();
             return (exists);
         }
-        public static List<Journey> SearchJourney(string startingCity, string targettedCity, int startingDate, int targettedDate)
+        private static readonly DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
+        private static long ConvertToTimestamp(DateTime value)
+        {
+            TimeSpan elapsedTime = value - Epoch;
+            return (long)elapsedTime.TotalSeconds;
+        }
+
+        public static List<Journey> SearchJourney(string startingCity, string targettedCity, string startingDate, string targettedDate)
         {
             CheckDataBaseConnection();
             connection.Open();
@@ -265,8 +274,13 @@ namespace PlatoVoiturage1.Models
                 int distanceArre = distanceArr.GetInt32(0);
                 connection.Close();
 
-                //journeys[j] = Math.Exp(Math.Abs(startingDate - j.Hdep) / 180) + Math.Exp(Math.Abs(targettedDate - j.Harr) / 180) + Math.Exp(distanceDepe) + Math.Exp(distanceArre);
-                journeys[j] = Math.Exp(distanceDepe) + Math.Exp(distanceArre);
+                long d1 = ConvertToTimestamp(DateTime.ParseExact(j.Hdep, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture));
+                long a1 = ConvertToTimestamp(DateTime.ParseExact(j.Harr, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture));
+                long d2 = ConvertToTimestamp(DateTime.ParseExact(startingDate, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture));
+                long a2 = ConvertToTimestamp(DateTime.ParseExact(targettedDate, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture));
+
+                journeys[j] = Math.Exp(Math.Abs(d1 - d2) / 180) + Math.Exp(Math.Abs(a1 - a2) / 180) + Math.Exp(distanceDepe) + Math.Exp(distanceArre);
+
             }
 
             List<Journey> searchResult = new List<Journey>();
@@ -278,7 +292,8 @@ namespace PlatoVoiturage1.Models
         }
 
 
-        public static void changePassword(string Email, string password)
+
+        public static void ChangePassword(string Email, string password)
         {
             CheckDataBaseConnection();
             connection.Open();
@@ -287,6 +302,24 @@ namespace PlatoVoiturage1.Models
             comm.Parameters.AddWithValue("password", password);
             comm.ExecuteReader();
             connection.Close();
+
+        }
+
+        public static bool DoesCityExist(string city)
+        {
+            CheckDataBaseConnection();
+            connection.Open();
+            city = city.ToUpper();
+            NpgsqlCommand comm = new NpgsqlCommand("SELECT * FROM voisin WHERE nom=(@ville);", connection);
+            comm.Parameters.AddWithValue("ville", city);
+            NpgsqlDataReader result = comm.ExecuteReader();
+            bool output = false;
+            if (result.HasRows)
+            {
+                output = true;
+            }
+            connection.Close();
+            return (output);
 
         }
 
