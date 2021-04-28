@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using Xamarin.Essentials;
 using System.Globalization;
 
 using PlatoVoiturage1.Models;
 
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
+
 namespace PlatoVoiturage1.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class JourneyDetail : ContentPage
+    public partial class JourneyReservation : ContentPage
     {
         public string AddressDep { get; set; }
         public string VilleDep { get; set; }
@@ -27,24 +26,27 @@ namespace PlatoVoiturage1.Views
         public string Nbplaces { get; set; }
         public string Comm { get; set; }
 
-
         private DateTime TimeDeparture { get; set; }
         private DateTime TimeArrival { get; set; }
         private Journey j;
-        private ContentPage HomePage;
-
-
-        public JourneyDetail(Journey j, ContentPage homePage)
+        private JourneySearchPage searchPage;
+        public JourneyReservation(Journey j, JourneySearchPage searchPage)
         {
             BindingContext = this;
+
             this.j = j;
             AddressDep = "Adresse de départ : " + j.AdressDep;
-            AddressArr ="Adresse d'arrivée : " + j.AdresseArr;
+            AddressArr = "Adresse d'arrivée : " + j.AdresseArr;
             Km = "Nombres de kilomètres : " + j.Km.ToString();
             Nbplaces = "Nombre de places restantes : " + j.NbPlaces.ToString();
             VilleDep = "Ville de départ : " + j.VilleDep;
             VilleArr = "Ville d'arrivée : " + j.VilleArr;
             Comm = "Commentaire : \n" + j.Comm;
+            this.TimeDeparture = DateTime.ParseExact(j.Hdep, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+            Hdep = "Heure de départ : " + TimeDeparture.ToString();
+            this.TimeArrival = DateTime.ParseExact(j.Harr, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+            Harr = "Heure d'arrivée : " + TimeArrival.ToString();
+            InitializeComponent();
             if (j.Pets)
             {
                 dog.BackgroundColor = Color.Green;
@@ -63,23 +65,37 @@ namespace PlatoVoiturage1.Views
             }
 
 
-            this.TimeDeparture = DateTime.ParseExact(j.Hdep, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
-            Hdep = "Heure de départ : " + TimeDeparture.ToString();
-            this.TimeArrival = DateTime.ParseExact(j.Harr, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
-            Harr = "Heure d'arrivée : " + TimeArrival.ToString();
-            InitializeComponent();
-            this.HomePage = homePage;
-            
 
+            
+            this.searchPage = searchPage;
+        }
+
+        protected override void OnAppearing()
+        {
+            if (InfoExchanger.IsAuthentified)
+            {
+                ReservationButton.IsEnabled = true;
+                ReservationButton.Text = "Réserver ce trajet";
+            }
+            else
+            {
+                ReservationButton.Text = "Veuillez vous connecter pour réserver ce trajet";
+            }
+            base.OnAppearing();
+        }
+
+        private async void MakeReservation(object sender, EventArgs e)
+        {
+            DatabaseInteraction.reserve(j.Eid, InfoExchanger.Email);
+            await DisplayAlert("Votre trajet a bien été réservé", "Vous pouvez continuer vos recherches", "OK");
+            await Shell.Current.Navigation.PopAsync();
 
         }
 
-
-
         private async void GoToMaps(object sender, EventArgs e)
         {
-            string mapString = "http://maps.google.com/?daddr="+ j.AdressDep + " " + j.VilleDep + "&saddr=" + j.AdresseArr + " " + j.VilleArr;
-            if(Device.RuntimePlatform == Device.Android)
+            string mapString = "http://maps.google.com/?daddr=" + j.AdressDep+" "+j.VilleDep + "&saddr=" + j.AdresseArr+" "+j.VilleArr;
+            if (Device.RuntimePlatform == Device.Android)
             {
                 await Launcher.OpenAsync(mapString);
             }
@@ -87,7 +103,7 @@ namespace PlatoVoiturage1.Views
 
         private async void GoBack(object sender, EventArgs e)
         {
-            BindingContext = HomePage;
+            BindingContext = searchPage;
             await Shell.Current.Navigation.PopAsync();
         }
     }

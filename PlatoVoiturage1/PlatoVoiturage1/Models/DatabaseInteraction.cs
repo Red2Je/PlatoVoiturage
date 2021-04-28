@@ -39,7 +39,7 @@ namespace PlatoVoiturage1.Models
 
             while (result.Read())
             {
-                Journey j = new Journey((int)result["eid"], (string)result["adressedep"], (string)result["adressearr"],(string)result["hdep"],(string)result["harr"],(int)result["km"],(int)result["nbplaces"]);
+                Journey j = new Journey((int)result["eid"], (string)result["adressedep"],(string)result["villedep"] ,(string)result["adressearr"],(string)result["villearr"],(string)result["hdep"],(string)result["harr"],(int)result["km"],(int)result["nbplaces"],(string)result["comment"],(bool)result["pets"], (bool)result["smoke"], (bool)result["music"], (bool)result["speak"]);
                 output.Add(j);
             }
             connection.Close();
@@ -60,7 +60,7 @@ namespace PlatoVoiturage1.Models
 
             while (result.Read())
             {
-                Journey j = new Journey((int)result["eid"], (string)result["adressedep"], (string)result["adressearr"], (string)result["hdep"], (string)result["harr"], (int)result["km"], (int)result["nbplaces"]);
+                Journey j = new Journey((int)result["eid"], (string)result["adressedep"], (string)result["villedep"], (string)result["adressearr"], (string)result["villearr"], (string)result["hdep"], (string)result["harr"], (int)result["km"], (int)result["nbplaces"], (string)result["comment"], (bool)result["pets"], (bool)result["smoke"], (bool)result["music"], (bool)result["speak"]);
                 output.Add(j);
             }
             connection.Close();
@@ -233,12 +233,13 @@ namespace PlatoVoiturage1.Models
 
         public static List<Journey> SearchJourney(string startingCity, string targettedCity, string startingDate, string targettedDate)
         {
+
             CheckDataBaseConnection();
             connection.Open();
 
-            NpgsqlCommand comm = new NpgsqlCommand("SELECT rechercheTrajet((@villeDepe), (@villeArre), (@hdepe), (@harre))", connection);
-            comm.Parameters.AddWithValue("%villeDepe%", startingCity);
-            comm.Parameters.AddWithValue("%villeArre%", targettedCity);
+            NpgsqlCommand comm = new NpgsqlCommand("SELECT * FROM rechercheTrajet((@villeDepe), (@villeArre), (@hdepe), (@harre))", connection);
+            comm.Parameters.AddWithValue("villeDepe", "%"+startingCity+"%");
+            comm.Parameters.AddWithValue("villeArre", "%"+targettedCity+"%");
             comm.Parameters.AddWithValue("hdepe", startingDate);
             comm.Parameters.AddWithValue("harre", targettedDate);
             NpgsqlDataReader result = comm.ExecuteReader();
@@ -247,18 +248,17 @@ namespace PlatoVoiturage1.Models
             List<Journey> temp = new List<Journey>();
             while (result.Read())
             {
-                temp.Add(new Journey((int)result["eid"], (string)result["adresseDep"], (string)result["adresseArr"], (string)result["hdep"], (string)result["harr"], (int)result["km"], (int)result["nbPlaces"]));
+               temp.Add(new Journey((int)result["eid"], (string)result["adresseDep"],(string)result["villeDep"], (string)result["adresseArr"], (string)result["villeArr"],(string)result["HDep"], (string)result["HArr"], (int)result["KM"], (int)result["Nb"],(string)result["comment"],(bool)result["pets"], (bool)result["smoke"], (bool)result["music"], (bool)result["speak"]));
             }
-
             connection.Close();
 
             foreach (Journey j in temp)
             {
                 CheckDataBaseConnection();
                 connection.Open();
-                NpgsqlCommand comm2 = new NpgsqlCommand("SELECT distance((@ville1), (@ville2))", connection);
-                comm2.Parameters.AddWithValue("%ville1%", startingCity);
-                comm2.Parameters.AddWithValue("%ville2%", j.AdressDep);
+                NpgsqlCommand comm2 = new NpgsqlCommand("SELECT * FROM distance((@ville1), (@ville2))", connection);
+                comm2.Parameters.AddWithValue("ville1", startingCity);
+                comm2.Parameters.AddWithValue("ville2", "%"+j.AdressDep+"%");
                 NpgsqlDataReader distanceDep = comm2.ExecuteReader();
                 distanceDep.Read();
                 int distanceDepe = distanceDep.GetInt32(0);
@@ -266,9 +266,9 @@ namespace PlatoVoiturage1.Models
 
                 CheckDataBaseConnection();
                 connection.Open();
-                NpgsqlCommand comm3 = new NpgsqlCommand("SELECT distance((@ville1), (@ville2))", connection);
-                comm3.Parameters.AddWithValue("%ville1%", targettedCity);
-                comm3.Parameters.AddWithValue("%ville2%", j.AdresseArr);
+                NpgsqlCommand comm3 = new NpgsqlCommand("SELECT * FROM distance((@ville1), (@ville2))", connection);
+                comm3.Parameters.AddWithValue("ville1", targettedCity);
+                comm3.Parameters.AddWithValue("ville2", "%"+j.AdresseArr+"%");
                 NpgsqlDataReader distanceArr = comm3.ExecuteReader();
                 distanceArr.Read();
                 int distanceArre = distanceArr.GetInt32(0);
@@ -330,6 +330,17 @@ namespace PlatoVoiturage1.Models
             connection.Close();
             return true;
                 
+        }
+
+        public static void reserve(int Eid, string Email)
+        {
+            CheckDataBaseConnection();
+            connection.Open();
+            NpgsqlCommand comm = new NpgsqlCommand("CALL reserve((@eid),(@email))", connection);
+            comm.Parameters.AddWithValue("eid", Eid);
+            comm.Parameters.AddWithValue("email", Email);
+            comm.ExecuteReader();
+            connection.Close();
         }
 
     }

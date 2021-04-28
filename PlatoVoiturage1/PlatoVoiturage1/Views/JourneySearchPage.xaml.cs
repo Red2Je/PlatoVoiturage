@@ -29,7 +29,7 @@ namespace PlatoVoiturage1.Views
         {
             ImageButton s = (ImageButton)sender;
 
-            await Shell.Current.Navigation.PushAsync(new JourneyDetail((Journey)s.BindingContext, this));
+            await Shell.Current.Navigation.PushAsync(new JourneyReservation((Journey)s.BindingContext, this));
         }
 
         private void Validate(object sender, EventArgs e)
@@ -70,9 +70,16 @@ namespace PlatoVoiturage1.Views
                     TimeSpan arrivalTime = ArrivalTime.Time;
                     DateTime departureDate = DepartureDay.Date;
                     DateTime arrivalDate = ArrivalDay.Date;
-                    string depTime = departureDate.Year + "-" + departureDate.Month + "-" + departureDate.Day + " " + departureTime.Hours + ":" + departureTime.Minutes + ":" + departureTime.Seconds;
-                    string arrTime = arrivalDate.Year + "-" + arrivalDate.Month + "-" + arrivalDate.Day + " " + arrivalTime.Hours + ":" + arrivalTime.Minutes + ":" + arrivalTime.Seconds;
-                    Result = DatabaseInteraction.SearchJourney(AddDep.Text.ToUpper(), AddArr.Text.ToUpper(), depTime, arrTime);
+                    //string depTime = departureDate.Year + "-" + departureDate.Month.ToString("dd") + "-" + departureDate.Day.ToString("dd") + " " + departureTime.Hours.ToString("dd") + ":" + departureTime.Minutes.ToString("dd") + ":" + departureTime.Seconds.ToString("dd");
+                    string depDate = departureDate.ToString("yyyy-MM-dd");
+                    string depTime = departureTime.ToString();
+                    string finalDep = depDate + " " + depTime;
+
+                    //string arrTime = arrivalDate.Year + "-" + arrivalDate.Month.ToString("dd") + "-" + arrivalDate.Day.ToString("dd") + " " + arrivalTime.Hours.ToString("dd") + ":" + arrivalTime.Minutes.ToString("dd") + ":" + arrivalTime.Seconds.ToString("dd");
+                    string arrDate = arrivalDate.ToString("yyyy-MM-dd");
+                    string arrTime = arrivalTime.ToString();
+                    string finalArr = arrDate + " " + arrTime;
+                    Result = DatabaseInteraction.SearchJourney(AddDep.Text.ToUpper(), AddArr.Text.ToUpper(), finalDep, finalArr);
                     ResearchDisplay.ItemsSource = Result;
                 }
             }

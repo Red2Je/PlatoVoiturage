@@ -25,19 +25,6 @@ namespace PlatoVoiturage1.Models
 
 
         public string TransformedJourney { get; set; }
-
-        public Journey(int eid, string adressDep, string adresseArr, string hdep, string harr, int km, int nbPlaces)
-        {
-            this.Eid = eid;
-            this.AdressDep = adressDep;
-            this.AdresseArr = adresseArr;
-            Hdep = hdep;
-            Harr = harr;
-            this.Km = km;
-            this.NbPlaces = nbPlaces;
-            this.TransformedJourney = adressDep + "\n -> \n" + adresseArr;
-        }
-
         public Journey(int eid, string adressDep, string villeDep, string adresseArr, string villeArr, string hdep, string harr, int km, int nbPlaces, string comm, bool pets, bool smoke, bool music, bool talk)
         {
             this.Eid = eid;
