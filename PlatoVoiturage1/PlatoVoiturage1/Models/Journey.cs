@@ -10,7 +10,9 @@ namespace PlatoVoiturage1.Models
 
         public int Eid { get; set; }
         public string AdressDep { get; set; }
+        public string VilleDep { get; set; }
         public string AdresseArr { get; set; }
+        public string VilleArr { get; set; }
         public string Hdep { get; set; }
         public string Harr { get; set; }
         public int Km { get; set; }
@@ -36,11 +38,13 @@ namespace PlatoVoiturage1.Models
             this.TransformedJourney = adressDep + "\n -> \n" + adresseArr;
         }
 
-        public Journey(int eid, string adressDep, string adresseArr, string hdep, string harr, int km, int nbPlaces, string comm, bool pets, bool smoke, bool music, bool talk)
+        public Journey(int eid, string adressDep, string villeDep, string adresseArr, string villeArr, string hdep, string harr, int km, int nbPlaces, string comm, bool pets, bool smoke, bool music, bool talk)
         {
             this.Eid = eid;
             this.AdressDep = adressDep;
+            this.VilleDep = villeDep;
             this.AdresseArr = adresseArr;
+            this.VilleArr = villeArr;
             Hdep = hdep;
             Harr = harr;
             this.Km = km;

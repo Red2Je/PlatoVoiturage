@@ -83,7 +83,7 @@ namespace PlatoVoiturage1.Models
             
             CheckDataBaseConnection();
             connection.Open();
-            NpgsqlCommand comm = new NpgsqlCommand("INSERT INTO trajet VALUES (" + j.Eid + ", '" + j.AdressDep + "', '" + j.AdresseArr + "', '" + j.Hdep + "', '" + j.Harr + "', " + j.Km + ", " + j.Pets + ", " + j.Smoke + ", " + j.Music + ", " + j.Talk + ", '" + j.Comm + "', " + j.NbPlaces + ");", connection);
+            NpgsqlCommand comm = new NpgsqlCommand("INSERT INTO trajet VALUES (" + j.Eid + ", '" + j.AdressDep + "', '"+ j.VilleDep + "', '" + j.AdresseArr + "', '"+ j.VilleArr + "', '" + j.Hdep + "', '" + j.Harr + "', " + j.Km + ", " + j.Pets + ", " + j.Smoke + ", " + j.Music + ", " + j.Talk + ", '" + j.Comm + "', " + j.NbPlaces + ");", connection);
             comm.ExecuteReader();
             connection.Close();
             CheckDataBaseConnection();
@@ -321,6 +321,15 @@ namespace PlatoVoiturage1.Models
             connection.Close();
             return (output);
 
+        }
+
+        public static bool ConnectionCloser()
+        {
+            if (connection.State == System.Data.ConnectionState.Closed)
+                return false;
+            connection.Close();
+            return true;
+                
         }
 
     }
