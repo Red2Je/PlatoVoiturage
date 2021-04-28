@@ -28,7 +28,7 @@ namespace PlatoVoiturage1.Views
         private async void Valider(object sender, EventArgs e)
         {
             
-
+            /*
             string dateDep = DepartureDate.Date.Year.ToString() + "-";
             if(DepartureDate.Date.Month < 10)
             {
@@ -51,7 +51,7 @@ namespace PlatoVoiturage1.Views
             {
                 dateArr += "0";
             }
-            dateArr += ArrDate.Date.Day.ToString() + " ";
+            dateArr += ArrDate.Date.Day.ToString() + " ";*/
 
 
             int passengers = 0;
@@ -74,7 +74,7 @@ namespace PlatoVoiturage1.Views
                 km = 0;
             }
  
-            Journey j = new Journey(0, depAd.Text, depVil.Text, arrAd.Text, arrVil.Text, dateDep + DepartureTime.Time.ToString(), dateArr + ArrTime.Time.ToString(), km, passengers, comm.Text, dog.BackgroundColor == Color.Green, smoke.BackgroundColor == Color.Green, music.BackgroundColor == Color.Green, talk.BackgroundColor == Color.Green);
+            Journey j = new Journey(0, depAd.Text, depVil.Text, arrAd.Text, arrVil.Text, DepartureDate.Date.ToString("yyyy-MM-dd") +" "+ DepartureTime.Time.ToString("HH:mm:ss"), ArrDate.Date.ToString("yyyy-MM-dd") +" "+ ArrTime.Time.ToString("HH:mm:ss"), km, passengers, comm.Text, dog.BackgroundColor == Color.Green, smoke.BackgroundColor == Color.Green, music.BackgroundColor == Color.Green, talk.BackgroundColor == Color.Green);
             
             
             try
