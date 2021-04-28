@@ -96,7 +96,7 @@ namespace PlatoVoiturage1.Models
 
 
 
-        public static string login(string Email, string Password)
+        public static string Login(string Email, string Password)
         {
             Console.WriteLine("Email : "+Email);
             Console.WriteLine("Password : " + Password);
@@ -136,7 +136,7 @@ namespace PlatoVoiturage1.Models
 
 
 
-        public static Client getClient(string Email)
+        public static Client GetClient(string Email)
         {
             CheckDataBaseConnection();
             connection.Open();
@@ -153,7 +153,7 @@ namespace PlatoVoiturage1.Models
             return output;
         }
 
-        public static bool checkIfClientExist(string Email)
+        public static bool CheckIfClientExist(string Email)
         {
             bool exists;
             CheckDataBaseConnection();
@@ -173,7 +173,7 @@ namespace PlatoVoiturage1.Models
             return (exists);
         }
 
-        public static bool checkIfPhoneExists(string numtel)
+        public static bool CheckIfPhoneExists(string numtel)
         {
             bool exists;
             CheckDataBaseConnection();
@@ -193,7 +193,7 @@ namespace PlatoVoiturage1.Models
             return (exists);
         }
 
-        public static void addNewUser(string Email, string nom, string prenom, string numtel, string password)
+        public static void AddNewUser(string Email, string nom, string prenom, string numtel, string password)
         {
             CheckDataBaseConnection();
             connection.Open();
@@ -207,7 +207,7 @@ namespace PlatoVoiturage1.Models
             connection.Close();
         }
 
-        public static bool checkEmailAndPhone(string email, string phoneNumber)
+        public static bool CheckEmailAndPhone(string email, string phoneNumber)
         {
             CheckDataBaseConnection();
             connection.Open();
@@ -293,7 +293,7 @@ namespace PlatoVoiturage1.Models
 
 
 
-        public static void changePassword(string Email, string password)
+        public static void ChangePassword(string Email, string password)
         {
             CheckDataBaseConnection();
             connection.Open();
@@ -305,7 +305,7 @@ namespace PlatoVoiturage1.Models
 
         }
 
-        public static bool doesCityExist(string city)
+        public static bool DoesCityExist(string city)
         {
             CheckDataBaseConnection();
             connection.Open();

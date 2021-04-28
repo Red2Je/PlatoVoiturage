@@ -53,7 +53,7 @@ namespace PlatoVoiturage1.Views
                     FailedPasswordText.TextColor = Color.Red;
                     isInscriptionAllowed = false;
                 }
-                if (DatabaseInteraction.checkIfClientExist(mail.Text))
+                if (DatabaseInteraction.CheckIfClientExist(mail.Text))
                 {
                     FailedPasswordText.Text = "Votre adresse mail existe déjà dans la base, veuillez en saisir une nouvelle";
                     FailedPasswordText.TextColor = Color.Red;
@@ -67,7 +67,7 @@ namespace PlatoVoiturage1.Views
                     isInscriptionAllowed = false;
                 }
 
-                if (DatabaseInteraction.checkIfPhoneExists(telephone.Text))
+                if (DatabaseInteraction.CheckIfPhoneExists(telephone.Text))
                 {
                     FailedPasswordText.Text = "Votre numéro de téléphone existe déjà dans la base, veuillez réessayer";
                     FailedPasswordText.TextColor = Color.Red;
@@ -80,7 +80,7 @@ namespace PlatoVoiturage1.Views
 
             if (isInscriptionAllowed)
             {
-                DatabaseInteraction.addNewUser(mail.Text, name.Text, surname.Text, telephone.Text, Password.Text);
+                DatabaseInteraction.AddNewUser(mail.Text, name.Text, surname.Text, telephone.Text, Password.Text);
                 await Shell.Current.Navigation.PopAsync(true);
                 await Shell.Current.Navigation.PopAsync(true);
             }

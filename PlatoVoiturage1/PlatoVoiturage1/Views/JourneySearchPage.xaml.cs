@@ -42,12 +42,12 @@ namespace PlatoVoiturage1.Views
             }
             else
             {
-                if (!DatabaseInteraction.doesCityExist(AddDep.Text.ToUpper()))
+                if (!DatabaseInteraction.DoesCityExist(AddDep.Text.ToUpper()))
                 {
                     Error.Text = "La ville de " + AddDep.Text + " n'existe pas dans notre base";
                     canValidate = false;
                 }
-                if (!DatabaseInteraction.doesCityExist(AddArr.Text.ToUpper()))
+                if (!DatabaseInteraction.DoesCityExist(AddArr.Text.ToUpper()))
                 {
                     Error.Text = "La ville de " + AddArr.Text + " n'existe pas dans notre base";
                     canValidate = false;

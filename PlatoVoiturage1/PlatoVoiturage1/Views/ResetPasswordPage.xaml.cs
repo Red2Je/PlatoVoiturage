@@ -68,7 +68,7 @@ namespace PlatoVoiturage1.Views
                     canReset = false;
                 }
 
-                if (!(DatabaseInteraction.checkEmailAndPhone(Email, numtel)))
+                if (!(DatabaseInteraction.CheckEmailAndPhone(Email, numtel)))
                 {
                     IncorrectPasswordText.Text = "Aucun lien entre l'adresse mail et le mot de passe, veuillez réessayer";
                     IncorrectPasswordText.TextColor = Color.Red;
@@ -78,7 +78,7 @@ namespace PlatoVoiturage1.Views
             }
             if (canReset)
             {
-                DatabaseInteraction.changePassword(Email, NewPassword.Text);
+                DatabaseInteraction.ChangePassword(Email, NewPassword.Text);
                 await DisplayAlert("Réinitialisation du mot de passe", "Votre mot de passe a bien été changé", "OK");
                 await Shell.Current.Navigation.PopAsync();
             }
