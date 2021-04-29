@@ -319,7 +319,7 @@ namespace PlatoVoiturage1.Models
             connection.Open();
             city = city.ToUpper();
             NpgsqlCommand comm = new NpgsqlCommand("SELECT * FROM voisin WHERE nom=(@ville);", connection);
-            comm.Parameters.AddWithValue("ville", city);
+            comm.Parameters.AddWithValue("ville", city.ToUpper());
             NpgsqlDataReader result = comm.ExecuteReader();
             bool output = false;
             if (result.HasRows)
