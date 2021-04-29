@@ -9,7 +9,7 @@
             <ImageButton Source="back_button.png" BackgroundColor="White" HeightRequest="35" HorizontalOptions="Start" Clicked="GoBack"/>
             <StackLayout Margin="20,0,20,0">  
                 <!-- Placeholder-->
-                <Frame BorderColor="Transparent" HeightRequest="50"/>
+                <Frame BorderColor="Transparent" HeightRequest="5"/>
                 <Frame BorderColor="{StaticResource Primary}" CornerRadius="25">
                     <Label Text="Inscription" TextColor="Black" HorizontalOptions="Center" FontSize="17"/>
                 </Frame>
@@ -34,12 +34,12 @@
                     <Entry x:Name="Password" Placeholder="Mot de passe" PlaceholderColor="Gray" TextColor="Black" IsPassword="True"/>
                 </Frame>
 
-                <Frame BorderColor="Gray" CornerRadius="50" Padding="20,0,20,10">
+                <Frame BorderColor="Gray" CornerRadius="50" Padding="20,0,20,0">
                     <Entry x:Name="PasswordConfirmation" Placeholder="Confirmez le mot de passe" PlaceholderColor="Gray" TextColor="Black" IsPassword="True"/>
                 </Frame>
                 <Label x:Name="FailedPasswordText" Text="a" TextColor="Transparent" HorizontalTextAlignment="Center"/>
-                <Frame BorderColor="Transparent" HeightRequest="100"/>
-                <Button Text="S'inscrire" CornerRadius="50" Clicked="ConfirmInscription"/>
+                <Frame BorderColor="Transparent" HeightRequest="1000"/>
+                <Button Text="S'inscrire" CornerRadius="50" Clicked="ConfirmInscription" Margin="0,0,0,10" VerticalOptions="EndAndExpand"/>
                 
             </StackLayout>
         </StackLayout>

@@ -21,8 +21,8 @@ namespace PlatoVoiturage1.Views
             BindingContext = this;
             DepartureTime.Time = DateTime.Now.TimeOfDay;
             ArrivalTime.Time = DateTime.Now.TimeOfDay.Add(new TimeSpan(1,0,0));
-            DepartureDay.Date = DateTime.Now.Date;
-            ArrivalDay.Date = DateTime.Now.Date;
+            DepartureDay.MinimumDate = DateTime.Now.Date;
+            ArrivalDay.MinimumDate = DateTime.Now.Date;
         }
 
         private async void GiveDetails(object sender, EventArgs e)

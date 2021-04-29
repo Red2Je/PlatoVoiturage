@@ -16,7 +16,7 @@
                         <Button x:Name="ConnectionButton" Grid.Column="2" Grid.Row="0" Text ="Connexion" Clicked="GoToLoginPage" HorizontalOptions="EndAndExpand"/>
 
                     </StackLayout>
-                    <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" Margin="20,25,20,0" BackgroundColor="{StaticResource Primary}">
+                    <Frame BorderColor="{StaticResource Primary}" CornerRadius="25" Margin="20,20,20,0" BackgroundColor="{StaticResource Primary}">
                         <Label Text="Vos trajets à venir" HorizontalOptions="Center" FontSize="25" TextColor="White"/>
                     </Frame>
                     <Frame BorderColor="Gray" CornerRadius="25" Margin="20,0,20,0" HeightRequest="150">

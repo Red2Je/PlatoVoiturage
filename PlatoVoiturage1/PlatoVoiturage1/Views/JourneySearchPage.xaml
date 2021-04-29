@@ -9,8 +9,8 @@
                 <Frame BorderColor="{StaticResource Primary}" BackgroundColor="{StaticResource Primary}" CornerRadius="50" Padding="5,0,5,0" HorizontalOptions="Start" WidthRequest="50">
                     <ImageButton Source="burger_white.png" WidthRequest="50"  HeightRequest="50" BackgroundColor="{StaticResource Primary}" HorizontalOptions="StartAndExpand" Clicked="ImageButton_Clicked" />
                 </Frame>
-                <StackLayout Margin="20,10,20,0">
-                    <Frame BorderColor="{StaticResource Primary}" CornerRadius="50" BackgroundColor="{StaticResource Primary}" Margin="0,50,0,0">
+                <StackLayout Margin="20,0,20,0">
+                    <Frame BorderColor="{StaticResource Primary}" CornerRadius="50" BackgroundColor="{StaticResource Primary}" Margin="0,20,0,0">
                         <Label Text="Recherche de trajet" FontSize="25" HorizontalOptions="Center" TextColor="White"/>
                     </Frame>
                     <Frame BorderColor="Gray" CornerRadius="25" Padding="20,0,20,0">
@@ -45,7 +45,7 @@
                     </Frame>
                     <Button Text="Rechercher" BackgroundColor="{StaticResource Primary}" CornerRadius="25" Clicked="Validate"/>
                     <Label x:Name="Error" TextColor="Red" HorizontalTextAlignment="Center"/>
-                    <Frame BorderColor="Gray" CornerRadius="25" Margin="0,50,0,0" HeightRequest="200">
+                    <Frame BorderColor="Gray" CornerRadius="25" Margin="0,20,0,10" HeightRequest="200">
                         <CollectionView x:Name="ResearchDisplay" ItemsLayout="VerticalList" BackgroundColor="White">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
