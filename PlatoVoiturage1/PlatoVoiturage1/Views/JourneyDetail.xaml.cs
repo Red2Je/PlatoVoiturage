@@ -45,6 +45,12 @@ namespace PlatoVoiturage1.Views
             VilleDep = "Ville de départ : " + j.VilleDep;
             VilleArr = "Ville d'arrivée : " + j.VilleArr;
             Comm = "Commentaire : \n" + j.Comm;
+            this.TimeDeparture = DateTime.ParseExact(j.Hdep, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+            Hdep = "Heure de départ : " + TimeDeparture.ToString();
+            this.TimeArrival = DateTime.ParseExact(j.Harr, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+            Harr = "Heure d'arrivée : " + TimeArrival.ToString();
+
+            InitializeComponent();
             if (j.Pets)
             {
                 dog.BackgroundColor = Color.Green;
@@ -63,11 +69,7 @@ namespace PlatoVoiturage1.Views
             }
 
 
-            this.TimeDeparture = DateTime.ParseExact(j.Hdep, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
-            Hdep = "Heure de départ : " + TimeDeparture.ToString();
-            this.TimeArrival = DateTime.ParseExact(j.Harr, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
-            Harr = "Heure d'arrivée : " + TimeArrival.ToString();
-            InitializeComponent();
+
             this.HomePage = homePage;
             
 
