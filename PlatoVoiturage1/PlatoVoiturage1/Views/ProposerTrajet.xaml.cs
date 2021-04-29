@@ -46,6 +46,8 @@ namespace PlatoVoiturage1.Views
                 return;
             }
             
+            //depAd.Text.Replace("\'", "\\\'");
+            //arrAd.Text.Replace("\'", "\\\'");
 
             int passengers = 0;
             int km = 0;
@@ -68,7 +70,7 @@ namespace PlatoVoiturage1.Views
             {
                 if (DatabaseInteraction.CheckIfClientExist(InfoExchanger.Email))
                 {
-                    DatabaseInteraction.proposeNewJourney(InfoExchanger.Email, j);
+                    DatabaseInteraction.ProposeNewJourney(InfoExchanger.Email, j);
                     await DisplayAlert("Trajet ajouté", "Votre trajet a bien été pris en compte", "OK");
                     depAd.Text = ""; arrAd.Text = ""; DepartureTime.Time = DateTime.Now.TimeOfDay; pasNum.Text = ""; comm.Text = ""; depVil.Text = ""; arrVil.Text = ""; disNum.Text = "";
                     dog.BackgroundColor = Color.Green; smoke.BackgroundColor = Color.Green; music.BackgroundColor = Color.Green; talk.BackgroundColor = Color.Green;

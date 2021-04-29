@@ -86,7 +86,7 @@ namespace PlatoVoiturage1.Views
 
         private async void MakeReservation(object sender, EventArgs e)
         {
-            DatabaseInteraction.reserve(j.Eid, InfoExchanger.Email);
+            DatabaseInteraction.Reserve(j.Eid, InfoExchanger.Email);
             await DisplayAlert("Votre trajet a bien été réservé", "Vous pouvez continuer vos recherches", "OK");
             await Shell.Current.Navigation.PopAsync();
 

@@ -67,7 +67,7 @@ namespace PlatoVoiturage1.Models
             return (output);
         }
 
-        public static void proposeNewJourney(string userEmail, Journey j)
+        public static void ProposeNewJourney(string userEmail, Journey j)
         {
             CheckDataBaseConnection();
             connection.Open();
@@ -83,12 +83,20 @@ namespace PlatoVoiturage1.Models
             
             CheckDataBaseConnection();
             connection.Open();
-            NpgsqlCommand comm = new NpgsqlCommand("INSERT INTO trajet VALUES (" + j.Eid + ", '" + j.AdressDep + "', '"+ j.VilleDep + "', '" + j.AdresseArr + "', '"+ j.VilleArr + "', '" + j.Hdep + "', '" + j.Harr + "', " + j.Km + ", " + j.Pets + ", " + j.Smoke + ", " + j.Music + ", " + j.Talk + ", '" + j.Comm + "', " + j.NbPlaces + ");", connection);
+            NpgsqlCommand comm = new NpgsqlCommand("INSERT INTO trajet VALUES ((@eid), (@adDep), (@vilDep), (@adArr), (@vilArr), (@hdep), (@harr), (@km), (@pets), (@smoke), (@music), (@talk), (@comm), (@nbPl));", connection);
+            comm.Parameters.AddWithValue("eid", j.Eid); comm.Parameters.AddWithValue("km", j.Km); 
+            comm.Parameters.AddWithValue("pets", j.Pets); comm.Parameters.AddWithValue("smoke", j.Smoke); 
+            comm.Parameters.AddWithValue("comm", j.Comm); comm.Parameters.AddWithValue("adDep", j.AdressDep); 
+            comm.Parameters.AddWithValue("vilDep", j.VilleDep); comm.Parameters.AddWithValue("harr", j.Harr); 
+            comm.Parameters.AddWithValue("music", j.Music); comm.Parameters.AddWithValue("nbPl", j.NbPlaces);
+            comm.Parameters.AddWithValue("adArr", j.AdresseArr); comm.Parameters.AddWithValue("vilArr", j.VilleArr); 
+            comm.Parameters.AddWithValue("hdep", j.Hdep); comm.Parameters.AddWithValue("talk", j.Talk);
             comm.ExecuteReader();
             connection.Close();
             CheckDataBaseConnection();
             connection.Open();
-            NpgsqlCommand comm2 = new NpgsqlCommand("INSERT INTO propose VALUES ('" + userEmail + "', " + j.Eid + ");", connection);
+            NpgsqlCommand comm2 = new NpgsqlCommand("INSERT INTO propose VALUES ((@email), (@eid));", connection);
+            comm2.Parameters.AddWithValue("email", userEmail); comm2.Parameters.AddWithValue("eid", j.Eid);
             comm2.ExecuteReader();
             connection.Close();
             
@@ -332,7 +340,7 @@ namespace PlatoVoiturage1.Models
                 
         }
 
-        public static void reserve(int Eid, string Email)
+        public static void Reserve(int Eid, string Email)
         {
             CheckDataBaseConnection();
             connection.Open();

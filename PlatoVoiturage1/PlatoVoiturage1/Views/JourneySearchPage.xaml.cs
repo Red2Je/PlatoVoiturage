@@ -35,7 +35,7 @@ namespace PlatoVoiturage1.Views
         private void Validate(object sender, EventArgs e)
         {
             bool canValidate = true;
-            if(AddDep == null || AddArr == null || DepartureTime == null || ArrivalTime == null || DepartureDay == null || ArrivalDay == null)
+            if(AddDep.Text == null || AddArr.Text == null || DepartureTime == null || ArrivalTime == null || DepartureDay == null || ArrivalDay == null)
             {
                 Error.Text = "Veuillez renseigner tous les champs";
                 canValidate = false;
