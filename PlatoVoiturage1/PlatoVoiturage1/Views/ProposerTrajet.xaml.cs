@@ -24,6 +24,7 @@ namespace PlatoVoiturage1.Views
             ArrTime.Time = initTime;
             ArrDate.MinimumDate = DepartureDate.Date;
             Console.WriteLine(DepartureTime.Time);
+            comm.Text = "";
         }
 
         private async void Valider(object sender, EventArgs e)
@@ -46,8 +47,6 @@ namespace PlatoVoiturage1.Views
                 return;
             }
             
-            //depAd.Text.Replace("\'", "\\\'");
-            //arrAd.Text.Replace("\'", "\\\'");
 
             int passengers = 0;
             int km = 0;
@@ -63,7 +62,7 @@ namespace PlatoVoiturage1.Views
             }
 
  
-            Journey j = new Journey(0, depAd.Text, depVil.Text, arrAd.Text, arrVil.Text, DepartureDate.Date.ToString("yyyy-MM-dd") +" "+ DepartureTime.Time.ToString(), ArrDate.Date.ToString("yyyy-MM-dd") +" "+ ArrTime.Time.ToString(), km, passengers, comm.Text, dog.BackgroundColor == Color.Green, smoke.BackgroundColor == Color.Green, music.BackgroundColor == Color.Green, talk.BackgroundColor == Color.Green);
+            Journey j = new Journey(0, depAd.Text, depVil.Text.ToUpper(), arrAd.Text, arrVil.Text.ToUpper(), DepartureDate.Date.ToString("yyyy-MM-dd") +" "+ DepartureTime.Time.ToString(), ArrDate.Date.ToString("yyyy-MM-dd") +" "+ ArrTime.Time.ToString(), km, passengers, comm.Text, dog.BackgroundColor == Color.Green, smoke.BackgroundColor == Color.Green, music.BackgroundColor == Color.Green, talk.BackgroundColor == Color.Green);
             
             
             try
