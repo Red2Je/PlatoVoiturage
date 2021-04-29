@@ -36,7 +36,7 @@
     </FlyoutItem>
     <FlyoutItem Title="Rechercher un trajet" Icon="chercher_trajet.png">
         <ShellContent Route="JourneySearchPage" ContentTemplate="{DataTemplate local:JourneySearchPage}"/>
-    </FlyoutItem>fix
+    </FlyoutItem>
 
     <FlyoutItem Title="Proposer un trajet" Icon="proposer_trajet.png">
         <ShellContent Route="ProposerTrajet" ContentTemplate="{DataTemplate local:ProposerTrajet}"/>
