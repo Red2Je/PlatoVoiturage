@@ -52,7 +52,7 @@
                     <Entry x:Name="depAd"  TextColor="Black"  Placeholder="Adresse de départ" PlaceholderColor="Gray" TextTransform="Lowercase" ClearButtonVisibility="WhileEditing"/>
                 </Frame>
                 <Frame BorderColor="Gray" Padding ="0,0,0,0" Grid.Row="4" Grid.Column="0" >
-                    <Entry x:Name="depVil"  TextColor="Black"  Placeholder="Ville de départ" PlaceholderColor="Gray" TextTransform="Lowercase" ClearButtonVisibility="WhileEditing" />
+                    <Entry x:Name="depVil"  TextColor="Black"  Placeholder="Ville de départ" PlaceholderColor="Gray" ClearButtonVisibility="WhileEditing" />
                 </Frame>
                 
                 <Frame BorderColor="{StaticResource Primary}" CornerRadius="50" Padding="0,0,0,0" Grid.Row="5" Grid.Column="0">
@@ -62,7 +62,7 @@
                     <Entry x:Name="arrAd"  TextColor="Black"  IsTextPredictionEnabled="False" Placeholder="Adresse d'arrivée" PlaceholderColor="Gray" Grid.Row="3" Grid.Column="0" TextTransform="Lowercase" ClearButtonVisibility="WhileEditing"/>
                 </Frame>
                 <Frame BorderColor="Gray" Padding ="0,0,0,0" Grid.Row="7" Grid.Column="0" >
-                    <Entry x:Name="arrVil"  TextColor="Black"  Placeholder="Ville d'arrivée" PlaceholderColor="Gray" TextTransform="Lowercase" ClearButtonVisibility="WhileEditing" />
+                    <Entry x:Name="arrVil"  TextColor="Black"  Placeholder="Ville d'arrivée" PlaceholderColor="Gray" ClearButtonVisibility="WhileEditing" />
                 </Frame>
                 
                 <Frame BorderColor="{StaticResource Primary}" CornerRadius="50" Padding="0,0,0,0" Grid.Row="8" Grid.Column="0">

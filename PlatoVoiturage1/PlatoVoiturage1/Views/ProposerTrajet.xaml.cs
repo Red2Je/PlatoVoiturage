@@ -28,26 +28,38 @@ namespace PlatoVoiturage1.Views
 
         private async void Valider(object sender, EventArgs e)
         {
+            
+            if(depAd.Text == null || arrAd.Text == null || pasNum == null || depVil == null || arrVil == null || disNum == null)
+            {
+                depAd.PlaceholderColor = Color.PaleVioletRed;
+                arrAd.PlaceholderColor = Color.PaleVioletRed;
+                depVil.PlaceholderColor = Color.PaleVioletRed;
+                arrVil.PlaceholderColor = Color.PaleVioletRed;
+                pasNum.PlaceholderColor = Color.PaleVioletRed;
+                disNum.PlaceholderColor = Color.PaleVioletRed;
+                await DisplayAlert("Erreur", "Veuillez remplir tous les champs.", "OK");
+                return;
+            }
+            if(!DatabaseInteraction.DoesCityExist(depVil.Text) || !DatabaseInteraction.DoesCityExist(arrVil.Text))
+            {
+                await DisplayAlert("Erreur", "Une des villes entrées n'existe pas.", "OK");
+                return;
+            }
+            
 
             int passengers = 0;
-            try
-            {
-                passengers = int.Parse(pasNum.Text);
-            }
-            catch
-            { 
-                passengers = 0;
-            }
-
             int km = 0;
             try
             {
+                passengers = int.Parse(pasNum.Text);
                 km = int.Parse(disNum.Text);
             }
             catch
             {
-                km = 0;
+                await DisplayAlert("Erreur", "Les champs \"Passagers\" et/ou \"KM\" sont incorrects.", "OK");
+                return;
             }
+
  
             Journey j = new Journey(0, depAd.Text, depVil.Text, arrAd.Text, arrVil.Text, DepartureDate.Date.ToString("yyyy-MM-dd") +" "+ DepartureTime.Time.ToString(), ArrDate.Date.ToString("yyyy-MM-dd") +" "+ ArrTime.Time.ToString(), km, passengers, comm.Text, dog.BackgroundColor == Color.Green, smoke.BackgroundColor == Color.Green, music.BackgroundColor == Color.Green, talk.BackgroundColor == Color.Green);
             
