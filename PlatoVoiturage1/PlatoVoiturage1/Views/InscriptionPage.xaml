@@ -34,7 +34,7 @@
                     <Entry x:Name="Password" Placeholder="Mot de passe" PlaceholderColor="Gray" TextColor="Black" IsPassword="True"/>
                 </Frame>
 
-                <Frame BorderColor="Gray" CornerRadius="50" Padding="20,0,20,0">
+                <Frame BorderColor="Gray" CornerRadius="50" Padding="20,0,20,10">
                     <Entry x:Name="PasswordConfirmation" Placeholder="Confirmez le mot de passe" PlaceholderColor="Gray" TextColor="Black" IsPassword="True"/>
                 </Frame>
                 <Label x:Name="FailedPasswordText" Text="a" TextColor="Transparent" HorizontalTextAlignment="Center"/>

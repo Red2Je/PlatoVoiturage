@@ -64,7 +64,7 @@
                     <Frame BorderColor="Gray" CornerRadius="25">
                         <Label Text="{Binding Comm}" TextColor="Black"/>
                     </Frame>
-                    <Button Text="Voir sur Maps" BackgroundColor="{StaticResource Primary}" Clicked="GoToMaps" CornerRadius="25"/>
+                    <Button Text="Voir sur Maps" BackgroundColor="{StaticResource Primary}" Clicked="GoToMaps" CornerRadius="25" Margin="0,0,0,10"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

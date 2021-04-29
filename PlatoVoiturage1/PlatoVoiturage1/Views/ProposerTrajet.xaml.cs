@@ -76,7 +76,7 @@ namespace PlatoVoiturage1.Views
                 }
                 else { await DisplayAlert("Erreur de connexion", "Il semblerait que vous n'êtes pas connecté à votre compte. Vérifiez et réessayez.", "OK"); }
             }
-            catch(Exception ex) {Console.WriteLine("OUPS" + ex.Message); DatabaseInteraction.ConnectionCloser(); await DisplayAlert("Erreur de traitement", "Une erreur est survenue pendant le traitement de votre requête. Vérifiez que vous soyez connecté.", "OK"); }
+            catch(Exception ex) {DatabaseInteraction.ConnectionCloser(); await DisplayAlert("Erreur de traitement", "Une erreur est survenue pendant le traitement de votre requête. Vérifiez que vous soyez connecté.", "OK"); }
             
 
         }
