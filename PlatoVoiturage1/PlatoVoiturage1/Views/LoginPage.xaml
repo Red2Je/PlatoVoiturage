@@ -4,12 +4,12 @@
              x:Class="PlatoVoiturage1.Views.LoginPage"
              Shell.NavBarIsVisible="False">
     <ContentPage.Content>
-        <ScrollView>
+        
             <StackLayout>
                 <ImageButton Source="back_button.png" BackgroundColor="White" HeightRequest="35" HorizontalOptions="Start" Clicked="GoBack"/>
-                <Image Source="logo.png" HeightRequest="200"/>
+                <Image Source="logo.png" HeightRequest="100"/>
                 <StackLayout Margin="20,0,20,0">
-                    <Frame BorderColor="{StaticResource Primary}" Margin="0,20,0,0" CornerRadius="10">
+                    <Frame BorderColor="{StaticResource Primary}" Margin="0,10,0,0" CornerRadius="10">
                         <Label Text="Connexion à votre compte Platovoiturage :" TextColor="Black" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontSize="17"/>
                     </Frame>
                     <Frame BorderColor="Gray" CornerRadius="50" Padding="25,0,25,0">
@@ -20,16 +20,16 @@
                     </Frame>
                     <Label x:Name="LoginError" TextColor="Transparent" Text="" HorizontalTextAlignment="Center"/>
                     <!--This frame is just a placeholder to make space with a stack layout. Use the heightRequest property to modify the space it takes-->
-                    <Frame BorderColor="Transparent" HasShadow="False" HeightRequest="50"/>
+                    
                     <Button Text="Connexion" CornerRadius="50" Clicked="Connect"/>
                     <Button Text="Mot de passe oublié" TextColor="{StaticResource Primary}" HorizontalOptions="Center" BackgroundColor="White" Clicked="SendForgotenPassword" />
-                    <Frame BorderColor="Transparent" HasShadow="False" HeightRequest="50"/>
-                    <Button Text="Pas encore membre ? Inscrivez-vous" Clicked="GoToInscription"/>
+                    <Frame BorderColor="Transparent" HasShadow="False" HeightRequest="1000"/>
+                    <Button Text="Pas encore membre ? Inscrivez-vous" Clicked="GoToInscription" Margin="0,0,0,10" />
                 </StackLayout>
 
 
             </StackLayout>
-        </ScrollView>
+        
         
     </ContentPage.Content>
 </ContentPage>

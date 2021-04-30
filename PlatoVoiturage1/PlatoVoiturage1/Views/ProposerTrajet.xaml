@@ -45,7 +45,7 @@
                     </Frame>
                 </StackLayout>
                 <Frame BorderColor="{StaticResource Primary}" CornerRadius="50" Padding="0,0,0,0" Grid.Row="2" Grid.Column="0">
-                    <Label Text="Renseignez l'adresse de départ" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
+                    <Label Text="Coordonnées de départ" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
                 </Frame>
               
                 <Frame BorderColor="Gray" Padding ="0,0,0,0" Grid.Row="3" Grid.Column="0" >
@@ -56,7 +56,7 @@
                 </Frame>
                 
                 <Frame BorderColor="{StaticResource Primary}" CornerRadius="50" Padding="0,0,0,0" Grid.Row="5" Grid.Column="0">
-                    <Label Text="Renseignez l'adresse d'arrivée" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
+                    <Label Text="Coordonnées d'arrivée" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
                 </Frame>
                 <Frame BorderColor="Gray" Padding ="0,0,0,0" Grid.Row="6" Grid.Column="0">
                     <Entry x:Name="arrAd"  TextColor="Black"  IsTextPredictionEnabled="False" Placeholder="Adresse d'arrivée" PlaceholderColor="Gray" Grid.Row="3" Grid.Column="0" TextTransform="Lowercase" ClearButtonVisibility="WhileEditing"/>
@@ -66,35 +66,35 @@
                 </Frame>
                 
                 <Frame BorderColor="{StaticResource Primary}" CornerRadius="50" Padding="0,0,0,0" Grid.Row="8" Grid.Column="0">
-                    <Label Text="Renseignez la date de départ" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand"/>
+                    <Label Text="Date de départ" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand"/>
                 </Frame>
                 <Frame BorderColor="Gray" Padding ="0,0,0,0" Grid.Row="9" Grid.Column="0">
                     <DatePicker x:Name="DepartureDate" TextColor="Black" DateSelected="DateChange"/>
                 </Frame>
                 
                 <Frame BorderColor="{StaticResource Primary}" CornerRadius="50" Padding="0,0,0,0" Grid.Row="10" Grid.Column="0">
-                    <Label Text="Renseignez l'heure de départ" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
+                    <Label Text="Heure de départ" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
                 </Frame>
                 <Frame BorderColor="Gray" Padding ="0,0,0,0" Grid.Row="11" Grid.Column="0">
                     <TimePicker x:Name="DepartureTime" TextColor="Black" />
                 </Frame>
 
                 <Frame BorderColor="{StaticResource Primary}" CornerRadius="50" Padding="0,0,0,0" Grid.Row="12" Grid.Column="0">
-                    <Label Text="Renseignez la date d'arrivée" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
+                    <Label Text="Date d'arrivée" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
                 </Frame>
                 <Frame BorderColor="Gray" Padding ="0,0,0,0" Grid.Row="13" Grid.Column="0">
                     <DatePicker x:Name="ArrDate" TextColor="Black"/>
                 </Frame>
 
                 <Frame BorderColor="{StaticResource Primary}" CornerRadius="50" Padding="0,0,0,0" Grid.Row="14" Grid.Column="0">
-                    <Label Text="Renseignez l'heure d'arrivée" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
+                    <Label Text="Heure d'arrivée" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
                 </Frame>
                 <Frame BorderColor="Gray" Padding ="0,0,0,0" Grid.Row="15" Grid.Column="0">
                     <TimePicker x:Name="ArrTime" TextColor="Black" />
                 </Frame>
 
                 <Frame BorderColor="{StaticResource Primary}" CornerRadius="50" Padding="0,0,0,0" Grid.Row="16" Grid.Column="0">
-                    <Label Text="Renseignez la distance du trajet (km)" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
+                    <Label Text="Détour tolérable (km)" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
                 </Frame>
                 <Frame BorderColor="Gray" Padding ="0,0,0,0" Grid.Row="17" Grid.Column="0">
                     <Entry x:Name="disNum" Keyboard="Numeric" TextColor="Black" Placeholder="0" PlaceholderColor="Gray">
@@ -106,7 +106,7 @@
                 </Frame>
                 
                 <Frame BorderColor="{StaticResource Primary}" CornerRadius="50" Padding="0,0,0,0" Grid.Row="18" Grid.Column="0">
-                    <Label Text="Renseignez le nombre de places" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
+                    <Label Text="Nombre de places disponibles" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" VerticalOptions="CenterAndExpand" />
                 </Frame>
                 <Frame BorderColor="Gray" Padding ="0,0,0,0" Grid.Row="19" Grid.Column="0">
                     <Entry x:Name="pasNum" Keyboard="Numeric" TextColor="Black" Placeholder="0" PlaceholderColor="Gray">

@@ -80,7 +80,7 @@ namespace PlatoVoiturage1.Views
 
         private async void GoToMaps(object sender, EventArgs e)
         {
-            string mapString = "http://maps.google.com/?daddr="+ j.AdressDep + " " + j.VilleDep + "&saddr=" + j.AdresseArr + " " + j.VilleArr;
+            string mapString = "http://maps.google.com/?daddr="+ j.AdresseArr + " " + j.VilleArr + "&saddr=" + j.AdressDep + " " + j.VilleDep;
             if(Device.RuntimePlatform == Device.Android)
             {
                 await Launcher.OpenAsync(mapString);

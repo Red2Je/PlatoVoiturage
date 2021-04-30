@@ -28,6 +28,12 @@ namespace PlatoVoiturage1.Views
 
         private async void Connect(object sender, EventArgs e)
         {
+            if(Em.Text==null || Pw.Text==null)
+            {
+                LoginError.Text = "L'adresse ou le mot de passe est vide";
+                LoginError.TextColor = Color.Red;
+                return;
+            }
             Email = Em.Text;
             Password = Pw.Text;
             string result = DatabaseInteraction.Login(Email, Password);
