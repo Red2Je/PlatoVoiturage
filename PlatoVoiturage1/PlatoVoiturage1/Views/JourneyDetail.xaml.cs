@@ -27,6 +27,8 @@ namespace PlatoVoiturage1.Views
         public string Nbplaces { get; set; }
         public string Comm { get; set; }
 
+        public string Numtel { get; set; }
+
 
         private DateTime TimeDeparture { get; set; }
         private DateTime TimeArrival { get; set; }
@@ -49,6 +51,7 @@ namespace PlatoVoiturage1.Views
             Hdep = "Heure de départ : " + TimeDeparture.ToString();
             this.TimeArrival = DateTime.ParseExact(j.Harr, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
             Harr = "Heure d'arrivée : " + TimeArrival.ToString();
+            Numtel = "Numéro de téléphone du conducteur " + DatabaseInteraction.getPhoneNumber(j.Eid);
 
             InitializeComponent();
             if (j.Pets)

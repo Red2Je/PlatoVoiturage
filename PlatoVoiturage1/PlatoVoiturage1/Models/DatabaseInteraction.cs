@@ -357,27 +357,29 @@ namespace PlatoVoiturage1.Models
             CheckDataBaseConnection();
             connection.Open();
             string email;
-            NpgsqlCommand comm = new NpgsqlCommand("SELECT * FROM propose WHERE eid = (@eid)", connection);
+            NpgsqlCommand comm = new NpgsqlCommand("SELECT * FROM reserve WHERE eid = (@eid)", connection);
             comm.Parameters.AddWithValue("eid", eid);
             NpgsqlDataReader result = comm.ExecuteReader();
+            string output;
             if (result.HasRows)
             {
                 result.Read();
                 email = (string)result["email"];
+                connection.Close();
+                CheckDataBaseConnection();
+                connection.Open();
+                NpgsqlCommand comm3 = new NpgsqlCommand("SELECT numtel FROM utilisateur WHERE email = (@email)", connection);
+                comm3.Parameters.AddWithValue("email", email);
+                var result3 = comm3.ExecuteReader();
+                result3.Read();
+                output = (string)result3["numtel"];
+                connection.Close();
             }
             else
             {
-                var comm2 = new NpgsqlCommand("SELECT * FROM reserve WHERE eid = (@eid)",connection);
-                comm2.Parameters.AddWithValue("eid", eid);
-                NpgsqlDataReader result2 = comm.ExecuteReader();
-                result2.Read();
-                email = (string)result2["email"];
+                output = InfoExchanger.User.Telephone;
             }
-            NpgsqlCommand comm3 = new NpgsqlCommand("SELECT numtel FROM utilisateur WHERE email = (@email)", connection);
-            comm3.Parameters.AddWithValue("email", email);
-            var result3 = comm3.ExecuteReader();
-            result3.Read();
-            string output = (string)result3["numtel"];
+            
 
             connection.Close();
             return output;
