@@ -42,7 +42,7 @@ namespace PlatoVoiturage1.Views
             this.j = j;
             AddressDep = "Adresse de départ : " + j.AdressDep;
             AddressArr ="Adresse d'arrivée : " + j.AdresseArr;
-            Km = "Nombres de kilomètres : " + j.Km.ToString();
+            Km = "Détour toléré (km) : " + j.Km.ToString();
             Nbplaces = "Nombre de places restantes : " + j.NbPlaces.ToString();
             VilleDep = "Ville de départ : " + j.VilleDep;
             VilleArr = "Ville d'arrivée : " + j.VilleArr;
