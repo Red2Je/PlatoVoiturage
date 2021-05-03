@@ -351,6 +351,38 @@ namespace PlatoVoiturage1.Models
             connection.Close();
         }
 
+
+        public static string getPhoneNumber(int eid)
+        {
+            CheckDataBaseConnection();
+            connection.Open();
+            string email;
+            NpgsqlCommand comm = new NpgsqlCommand("SELECT * FROM propose WHERE eid = (@eid)", connection);
+            comm.Parameters.AddWithValue("eid", eid);
+            NpgsqlDataReader result = comm.ExecuteReader();
+            if (result.HasRows)
+            {
+                result.Read();
+                email = (string)result["email"];
+            }
+            else
+            {
+                var comm2 = new NpgsqlCommand("SELECT * FROM reserve WHERE eid = (@eid)",connection);
+                comm2.Parameters.AddWithValue("eid", eid);
+                NpgsqlDataReader result2 = comm.ExecuteReader();
+                result2.Read();
+                email = (string)result2["email"];
+            }
+            NpgsqlCommand comm3 = new NpgsqlCommand("SELECT numtel FROM utilisateur WHERE email = (@email)", connection);
+            comm3.Parameters.AddWithValue("email", email);
+            var result3 = comm3.ExecuteReader();
+            result3.Read();
+            string output = (string)result3["numtel"];
+
+            connection.Close();
+            return output;
+        }
+
     }
 
 
