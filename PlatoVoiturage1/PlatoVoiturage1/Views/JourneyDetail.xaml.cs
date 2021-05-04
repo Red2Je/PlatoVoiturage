@@ -15,6 +15,7 @@ using PlatoVoiturage1.Models;
 namespace PlatoVoiturage1.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+    //A journey detail page is used to display to the user some information about it's incoming journey
     public partial class JourneyDetail : ContentPage
     {
         public string AddressDep { get; set; }
@@ -33,6 +34,7 @@ namespace PlatoVoiturage1.Views
         private DateTime TimeDeparture { get; set; }
         private DateTime TimeArrival { get; set; }
         private Journey j;
+        //This attribute is used to modify the bindding context, allowing us to use the named items on the page
         private ContentPage HomePage;
 
 
@@ -52,8 +54,9 @@ namespace PlatoVoiturage1.Views
             this.TimeArrival = DateTime.ParseExact(j.Harr, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
             Harr = "Heure d'arrivée : " + TimeArrival.ToString();
             Numtel = "Numéro de téléphone du conducteur " + DatabaseInteraction.getPhoneNumber(j.Eid);
-
+            //The components are initialized here to make sure that the data are already in there attributes before the components such as the labels load.
             InitializeComponent();
+            //From here we are setting a component's attribute so the component have to be initialized
             if (j.Pets)
             {
                 dog.BackgroundColor = Color.Green;
@@ -80,7 +83,7 @@ namespace PlatoVoiturage1.Views
         }
 
 
-
+        //This method allows a user to open google map to be open on its device, with the journey schedulded
         private async void GoToMaps(object sender, EventArgs e)
         {
             string mapString = "http://maps.google.com/?daddr="+ j.AdresseArr + " " + j.VilleArr + "&saddr=" + j.AdressDep + " " + j.VilleDep;
@@ -90,6 +93,7 @@ namespace PlatoVoiturage1.Views
             }
         }
 
+        //Same as the InscriptionPage GoBack method
         private async void GoBack(object sender, EventArgs e)
         {
             BindingContext = HomePage;

@@ -5,8 +5,11 @@ using Xamarin.Forms;
 
 namespace PlatoVoiturage1.Services
 {
+    //This class is made to ensure that when entering phone numbers, the user can enter anything else than numbers.
+    //This service was made because certain keyboards, even if they are set to "phone", puts "-" and spaces as available keys.
     class NumericValidationBehavior :Behavior<Entry>
     {
+        //These two methodes below are here to bind our new event handler to the entry bloc
         protected override void OnAttachedTo(Entry entry)
         {
             entry.TextChanged += OnEntryTextChanged;
@@ -19,6 +22,7 @@ namespace PlatoVoiturage1.Services
             base.OnDetachingFrom(entry);
         }
 
+        //This method is the event handler that will check if our entry is valid. Each time the text changes, this event handler goes through th entire inut and checks for bad characters
         private static void OnEntryTextChanged(object sender, TextChangedEventArgs args)
         {
 

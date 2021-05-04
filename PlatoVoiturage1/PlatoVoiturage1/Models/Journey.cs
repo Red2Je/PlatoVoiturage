@@ -4,10 +4,11 @@ using System.Text;
 
 namespace PlatoVoiturage1.Models
 {
+    //This class represnts a journey. Most of the attributes are self-explanatory
     public class Journey
     {
 
-
+        //The id of the journey
         public int Eid { get; set; }
         public string AdressDep { get; set; }
         public string VilleDep { get; set; }
@@ -23,7 +24,7 @@ namespace PlatoVoiturage1.Models
         public bool Music { get; set; }
         public bool Talk { get; set; }
 
-
+        //The transofrmed journey is an attribute that will be displayed on a journey list
         public string TransformedJourney { get; set; }
         public Journey(int eid, string adressDep, string villeDep, string adresseArr, string villeArr, string hdep, string harr, int km, int nbPlaces, string comm, bool pets, bool smoke, bool music, bool talk)
         {

@@ -14,6 +14,7 @@ using Xamarin.Essentials;
 namespace PlatoVoiturage1.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+    //This page is similar to the journey detail page, except it allows the user to reserve the journey he is looking at. This page is used in the journey search page
     public partial class JourneyReservation : ContentPage
     {
         public string AddressDep { get; set; }
@@ -30,6 +31,7 @@ namespace PlatoVoiturage1.Views
         private DateTime TimeArrival { get; set; }
         private Journey j;
         private JourneySearchPage searchPage;
+        //see journey details page
         public JourneyReservation(Journey j, JourneySearchPage searchPage)
         {
             BindingContext = this;
@@ -70,6 +72,7 @@ namespace PlatoVoiturage1.Views
             this.searchPage = searchPage;
         }
 
+        //This overriden event handler allows the user to reserve a journey only if he is logged in
         protected override void OnAppearing()
         {
             if (InfoExchanger.IsAuthentified)
@@ -84,6 +87,7 @@ namespace PlatoVoiturage1.Views
             base.OnAppearing();
         }
 
+        //This method allows the user to make a reservation on the journey
         private async void MakeReservation(object sender, EventArgs e)
         {
             DatabaseInteraction.Reserve(j.Eid, InfoExchanger.Email);
@@ -91,7 +95,7 @@ namespace PlatoVoiturage1.Views
             await Shell.Current.Navigation.PopAsync();
 
         }
-
+        //see journey details page
         private async void GoToMaps(object sender, EventArgs e)
         {
             string mapString = "http://maps.google.com/?daddr=" + j.AdressDep+" "+j.VilleDep + "&saddr=" + j.AdresseArr+" "+j.VilleArr;
@@ -100,7 +104,7 @@ namespace PlatoVoiturage1.Views
                 await Launcher.OpenAsync(mapString);
             }
         }
-
+        //see journey details page
         private async void GoBack(object sender, EventArgs e)
         {
             BindingContext = searchPage;

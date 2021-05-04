@@ -4,6 +4,7 @@ using System.Text;
 
 namespace PlatoVoiturage1.Models
 {
+    // A class representing a client, all the attributes names are self-explanatory.
     public class Client
     {
         public string Email { get; set; }
