@@ -90,7 +90,7 @@ namespace PlatoVoiturage1.Models
                 j.Eid = result.GetInt32(0) + 1;
             }else { j.Eid = 1; }
             connection.Close();
-            //Here we can see that the connection is checked and opened multiple times. It is done so to avoid  two request being sent at once
+            //Here we can see that the connection is checked and opened multiple times. It is done so to avoid two request being sent at once
             CheckDataBaseConnection();
             connection.Open();
             NpgsqlCommand comm = new NpgsqlCommand("INSERT INTO trajet VALUES ((@eid), (@adDep), (@vilDep), (@adArr), (@vilArr), (@hdep), (@harr), (@km), (@pets), (@smoke), (@music), (@talk), (@comm), (@nbPl));", connection);
@@ -355,7 +355,7 @@ namespace PlatoVoiturage1.Models
 
         }
 
-        //This method checks if the connection is closed
+        //This method checks if the connection is closed, and close it if it isn't. It returns false if it was already close, and true ohterwise.
         public static bool ConnectionCloser()
         {
             if (connection.State == System.Data.ConnectionState.Closed)
